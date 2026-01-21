@@ -1,0 +1,55 @@
+# Dashboard Analicts Crypto. STATUS: Em Desenvolvimento
+
+Um dashboard moderno e responsivo para análise de criptomoedas em tempo real. 
+Permite aos usuários acompanhar preços, comparar ativos, configurar alertas 
+personalizados e analisar tendências com gráficos interativos.
+
+## 📊 Como ficara apos ser concluido?
+Um Dashboard de Análise de Criptomoedas que permite aos usuários monitorar em tempo real o desempenho de diferentes criptomoedas, comparar ativos e gerenciar alertas de preço.
+
+## O que ja esta pronto?
+## Roadmap
+**Estruras**
+[] Estruturar html
+[] Estilizar css
+[] Implantar Chart
+**Adicao de conteudo**
+[] Conectar Api
+[] Adicionar conteudo a LiveMarket
+[] Adicionar demais conteudos
+**Ajustes**
+[] Seletor de filtro por data
+[] Alteraçao de moeda
+[] Ajustar alarme
+[] Ajustar responsividade
+
+## 🎯 Funcionalidades Principais:
+Overview - Visão geral do mercado crypto com principais indicadores
+Assets - Lista e detalhes das criptomoedas monitoradas
+Compare - Comparação entre duas ou mais criptomoedas
+Alerts - Sistema de notificações para variações de preço
+Settings - Configurações do usuário e preferências
+
+
+## Stack utilizada
+**Front-end:** HTML, CSS, Vanilla JS
+
+##Bibliotecas & APIs:
+**Fetch API**
+**Chart.js** 
+
+##API de Dados:
+**CoinGecko API**
+
+##Ferramentas de Desenvolvimento:
+**VS Code**
+**Git & GitHub**
+**Live Server** 
+
+##Build
+**GitPages**
+
+CRIADO POR: RiconDev
+SINTA-SE A VONTADE PARA ENTRAR EM CONTATO!
+
+LinkedIn:

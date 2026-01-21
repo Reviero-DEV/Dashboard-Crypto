@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Analicts Crypto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+    <header>
+    <div class="logo">
+        <h1>Analicts Crypto</h1>
+    </div>
+    <div class="search-bar">
+        <input type="text" placeholder="Search...">
+    </div>
+    <div class="alerts">
+        <button class="icon-alerts">Alerts</button>
+        <span id="qty-alerts"></span>
+    </div>
+    <div class="date-selector">
+        <select aria-label="Seletor de data">
+            <option value="">Ultimos 7 dias</option>
+            <option value="">Ultimos 30 dias</option>
+            <option value="">Ultimos 3 meses</option>
+            <option value="">Ultimo ano</option>
+            <option value="">Todos os tempos</option>
+        </select>
+
+    </div>
+</header>
+
+<div class="container">
+    <aside class="sidebar">
+        <nav aria-label="Navegação Lateral">
+            <ul>
+                <li class="icon-side"><button type="button">Overview</button></li>
+                <li class="icon-side"><button type="button">Assets</button></li>
+                <li class="icon-side"><button type="button">Compare</button></li>
+                <li class="icon-side"><button type="button">Alerts</button></li>
+                <li class="icon-side"><button type="button">Settings</button></li>
+            </ul>
+        </nav>
+    </aside>
+    <main>
+        <section class="top-livers">
+            <div class="overview"></div>
+            <aside class="notices"></aside>
+        </section>
+
+        <section class="mda-details"></section>
+        <Section class="section-liveMarket"></Section>
+    </main>
+</div>
+    
+</body>
+</html>
