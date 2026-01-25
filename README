@@ -10,7 +10,7 @@ Um Dashboard de Análise de Criptomoedas que permite aos usuários monitorar em 
 ## O que ja esta pronto?
 ## Roadmap
 **Estruras**
-[] Estruturar html
+[X] Estruturar html
 [] Estilizar css
 [] Implantar Chart
 **Adicao de conteudo**
