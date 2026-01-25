@@ -1,4 +1,134 @@
+:root {
+    --bg-main: #0b0c10;
+    --bg-card: #15171c;
+    --accent: #f7931a;
+    --text-primary: #ffffff;
+    --text-secondary: #94969b;
+    --positive: #00c853;
+    --negative: #ff3d00;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    background: rgb(1, 1, 31);
-    color: whitesmoke;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: var(--bg-main);
+    border-bottom: 1px solid #2d2f36;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo i {
+    color: var(--accent);
+    font-size: 2rem;
+}
+
+.search-bar {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    width: 300px;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    color: white;
+    margin-left: 10px;
+    outline: none;
+    width: 100%;
+}
+
+.alerts {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.alerts button {
+    background: var(--bg-card);
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+#qty-alerts {
+    color: var(--positive);
+    font-size: 0.8rem;
+}
+
+.date-selector span {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+select {
+    background: var(--bg-card);
+    border: 1px solid #2d2f36;
+    color: var(--text-primary);
+    padding: 8px 12px;
+    border-radius: 8px;
+    appearance: none;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 100vh;
+}
+
+.sidebar {
+    background-color: var(--bg-card);
+    padding: 30px 20px;
+    border-right: 1px solid #2d2f36;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.icon-side button {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 15px;
+    width: 100%;
+    text-align: left;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon-side button i {
+    color: var(--text-secondary);
+}
+
+.icon-side button:hover {
+    color: var(--accent);
+    background: rgba(247, 147, 26, 0.1);
+    border-radius: 8px;
 }
