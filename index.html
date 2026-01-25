@@ -5,20 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Analicts Crypto</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="shortcut icon" href="/bitcoin (2).png" type="image/x-icon">
 </head>
 
 
 <body>
     <header>
     <div class="logo">
-        <img src="https://pngtree.com/freepng/gold-bitcoin-symbol_5326186.html" alt="" srcset="">
+<i class="fa-brands fa-bitcoin"></i>
         <h1>Analicts Crypto</h1>
     </div>
     <div class="search-bar">
-        <input type="text" placeholder="Search...">
+         <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Pesquisar...">
     </div>
     <div class="alerts">
-        <button class="icon-alerts">Alerts</button>
+        <button aria-label="alertas" class="icon-alerts"><i class="fa-solid fa-bell"></i></button>
         <span id="qty-alerts"></span>
     </div>
     <div class="date-selector">
@@ -37,11 +40,11 @@
     <aside class="sidebar">
         <nav aria-label="Navegação Lateral">
             <ul>
-                <li class="icon-side"><button type="button">Overview</button></li>
-                <li class="icon-side"><button type="button">Assets</button></li>
-                <li class="icon-side"><button type="button">Compare</button></li>
-                <li class="icon-side"><button type="button">Alerts</button></li>
-                <li class="icon-side"><button type="button">Settings</button></li>
+                <li class="icon-side"><button type="button"><i class="fa-solid fa-chart-line"></i>Visão geral</button></li>
+                <li class="icon-side"><button type="button"><i class="fa-solid fa-newspaper"></i>Notícias</button></li>
+                <li class="icon-side"><button type="button"><i class="fa-solid fa-code-compare"></i>Comparar</button></li>
+                <li class="icon-side"><button type="button"><i class="fa-solid fa-bell"></i>Alertas</button></li>
+                <li class="icon-side"><button type="button"><i class="fa-solid fa-cog"></i>Configurações</button></li>
             </ul>
         </nav>
     </aside>
@@ -50,14 +53,13 @@
             
             <div class="overview">
                 <div class="card">
-            <h3>Market Overview</h3>
-            <!-- ADICIONAR SELECT -->
+            <h3>Panorama</h3>
             <div class="overview-chart-placeholder">
                 <img src="https://via.placeholder.com" alt="Gráfico de visão geral do mercado">
             </div>
-            <div class="market-overview-details">
+            <div class="overview-details">
                  <span class="change-positive">+ 19.23%</span>
-                 <span>Last month</span>
+                 <span>Último mês</span>
             </div>
         </div>
             </div>
@@ -79,7 +81,7 @@
         </section>
 
         <section class="mda-details">
-             <div class="card main-crypto-card">
+             <div class=" main-crypto-card">
             <div class="card-header">
                 <h3>Bitcoin (BTC)</h3>
                 <select class="select-mda" aria-label="Selecionar Moeda">
@@ -93,17 +95,17 @@
                 <span class="change-positive">+ 2.31%</span>
             </div>
             
-            <div class="chart-placeholderw">
+            <div class="chart-placeholderw card">
               
             </div>
 
             <div class="price-details">
                 <div class="detail-item">
-                    <span>24h Change</span>
+                    <span>Alteração em 24 horas</span>
                     <span class="change-positive">+2.31%</span>
                 </div>
                 <div class="detail-item">
-                    <span>24h High/Low</span>
+                    <span>24h Alta/Baixa</span>
                     <span>$44,128 / $41,481</span>
                 </div>
                 <div class="detail-item">
@@ -113,20 +115,20 @@
             </div>
         </div>
 
-        <div class="card top-movers">
-            <h3>Top Movers</h3>
-            <ul class="movers-list">
-                <li class="mover-item"></li>
-                <li class="mover-item"></li>
-                <li class="mover-item"></li>
+        <div class="card highlights">
+            <h3>Destaques</h3>
+            <ul class="highlights-list">
+                <li class="highlight-item"></li>
+                <li class="highlight-item"></li>
+                <li class="highlight-item"></li>
         </div>
         </section>
 
         <Section class="section-liveMarket">
-             <aside class="live-market-section">
+             <aside class="live-market-main">
         <div class="card">
-            <h3>Live Market</h3>
-            <p class="update-info">Updated 2s ago</p>
+            <h3>Mercado ao vivo</h3>
+            <p class="update-info">Atualizado há 2s</p>
             
             <ul class="list-live">
                 <li class="live-item"></li>
@@ -138,8 +140,8 @@
         </div>
 
         <div class="card">
-            <h3>Live Market</h3>
-            <p class="update-info">Today: Now</p>
+            <h3>Mercado ao vivo</h3>
+            <p class="update-info">Hoje: agora</p>
             
             <ul class="list-live">
                 <li class="live-item"></li>
