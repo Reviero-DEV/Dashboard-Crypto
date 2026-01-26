@@ -9,14 +9,13 @@ Um Dashboard de Análise de Criptomoedas que permite aos usuários monitorar em 
 
 ## O que ja esta pronto?
 ## Roadmap
-**Estruras**
+**Estruras e Adicao de conteudo**
 [X] Estruturar html
-[] Estilizar css
-[] Implantar Chart
-**Adicao de conteudo**
+[x] Estilizar css
 [] Conectar Api
 [] Adicionar conteudo a LiveMarket
 [] Adicionar demais conteudos
+[] Implantar Chart
 **Ajustes**
 [] Seletor de filtro por data
 [] Alteraçao de moeda
