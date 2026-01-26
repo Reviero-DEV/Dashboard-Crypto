@@ -147,7 +147,7 @@ section {
 .mda-details {
     border: 1px solid #ffffff1a;
     border-top: none;
-    width: 45%;
+   flex: 1;
 }
 
 .top-livers {
@@ -220,4 +220,67 @@ img {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
+}
+
+.main-price {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.change-positive {
+    color: var(--positive);
+    background: rgba(0, 200, 83, 0);
+    padding: 4px 8px;
+    border-radius: 8px;
+    height: fit-content;
+    font-size: 1.3rem;
+}
+
+.change-negative {
+    color: var(--negative);
+    background: rgba(255, 61, 0, 0.1);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+}
+
+.overview-details {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.overview-details span:first-child {
+    font-size: 1rem;
+}
+
+.price-details {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 15px;
+    gap: 20px;
+    border-top: 1px solid #2d2f36;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    border-radius: 20px;
+    border: 1px solid #2d2f36;
+    gap: 5px;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+.detail-item span:last-child {
+    color: var(--text-primary);
+    font-weight: bold;
 }
