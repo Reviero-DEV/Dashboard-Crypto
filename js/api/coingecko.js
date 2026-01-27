@@ -9,3 +9,13 @@ export async function getTopCoins() {
     }
     return response.json();
 }
+
+export async function getCoinChart(coinId, days = 30) {
+    const response = await fetch(
+        `${BASE_URL}/coins/${coinId}/market_chart?vs_currency=usd&days=${days}`
+    );
+    if (!response.ok) {
+        throw new Error(`Erro ${response.status} ao buscar dados do gráfico`);
+    }
+    return response.json();
+}
