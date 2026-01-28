@@ -178,6 +178,13 @@ section {
     margin-bottom: 20px;
 }
 
+#coin-name {
+    display: flex;
+    font-size: 1.7rem;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
 h3 {
     color: var(--text-secondary);
     font-size: 0.9rem;
@@ -235,6 +242,7 @@ img {
     border-radius: 8px;
     height: fit-content;
     font-size: 1.3rem;
+    font-weight: bold;
 }
 
 .change-negative {
@@ -243,6 +251,7 @@ img {
     padding: 4px 8px;
     border-radius: 6px;
     font-size: 0.8rem;
+    font-weight: bold;
 }
 
 .overview-details {
@@ -280,7 +289,7 @@ img {
     margin-bottom: 20px;
 }
 
-.detail-item span:last-child {
+.detailItem-secondary {
     color: var(--text-primary);
     font-weight: bold;
 }
