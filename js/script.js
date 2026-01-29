@@ -1,4 +1,4 @@
-import { getTopCoins, getCoinChart } from './api/coingecko.js';
+import { getTopCoins, getCoinChart, getCardHighlights, getTrending } from './api/coingecko.js';
 
 function formatNumberCompact(value) {
   if (value == null) return '--';
@@ -120,7 +120,31 @@ async function renderChart(coinId, days = 30) {
   }
   console.log(window.Chart)
 }
+
+async function renderCardHighlights() {
+    const coins = await getCardHighlights();
+    const listContainer = document.getElementById('highlights-list');
+
+    listContainer.innerHTML = coins.map(coin => `
+        <li class="highlight-item">
+            <div class="highlight-item-content">
+                <img src="${coin.image}" width="30" class="me-2" alt="${coin.name}">
+                <span><strong>${coin.name}</strong> <small class="text-muted">${coin.symbol.toUpperCase()}</small></span>
+            </div>
+            <div class="highlight-info-content">
+                <div>$${coin.current_price.toLocaleString()}</div>
+                <small class="${coin.price_change_percentage_24h >= 0 ? 'change-positive' : 'change-negative'}">
+                    ${coin.price_change_percentage_24h.toFixed(2)}%
+                </small>
+            </div>
+        </li>
+    `).join('');
+    console.log(listContainer);
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
   carregarDashboard();
   renderChart('bitcoin', 30);
+  renderCardHighlights();
 });

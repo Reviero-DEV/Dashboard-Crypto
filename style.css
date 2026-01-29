@@ -217,6 +217,24 @@ h3 {
     color: var(--text-primary);
 }
 
+.highlight-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.highlight-item-content {
+    gap: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.highlight-info-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
 .update-info {
     font-size: 0.75rem;
     color: var(--text-secondary);
@@ -241,13 +259,13 @@ img {
     padding: 4px 8px;
     border-radius: 8px;
     height: fit-content;
-    font-size: 1.3rem;
+    font-size: 0.8rem;
     font-weight: bold;
 }
 
 .change-negative {
     color: var(--negative);
-    background: rgba(255, 61, 0, 0.1);
+    /* background: rgba(255, 61, 0, 0.1); */
     padding: 4px 8px;
     border-radius: 6px;
     font-size: 0.8rem;
