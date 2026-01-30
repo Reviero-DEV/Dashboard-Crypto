@@ -48,3 +48,21 @@ export async function getCardHighlights() {
         return [];
     }
 }
+
+export async function topGainers() {
+
+    const idsHigh = await fetch(
+        `${BASE_URL}/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&price_change_percentage=24h`);
+    const data = await idsHigh.json();
+    return [...data].filter(coins => coins.price_change_percentage_24h > 0).sort((a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h).slice(0, 7);
+
+}
+
+export async function topLosers() {
+
+    const idsLow = await fetch(
+        `${BASE_URL}/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&price_change_percentage=24h`);
+    const data = await idsLow.json();
+    return [...data].filter(coins => coins.price_change_percentage_24h < 0).sort((a, b) => a.price_change_percentage_24h - b.price_change_percentage_24h).slice(0, 7);
+
+}

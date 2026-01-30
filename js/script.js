@@ -1,4 +1,4 @@
-import { getTopCoins, getCoinChart, getCardHighlights, getTrending } from './api/coingecko.js';
+import { getTopCoins, getCoinChart, getCardHighlights, topGainers, topLosers } from './api/coingecko.js';
 
 function formatNumberCompact(value) {
   if (value == null) return '--';
@@ -142,9 +142,43 @@ async function renderCardHighlights() {
     console.log(listContainer);
 }
 
+async function renderTopMovers() {
+  const gainers = await topGainers();
+  const losers = await topLosers();
+
+  const gainersContainer = document.getElementById('top-gainers');
+  const losersContainer = document.getElementById('top-losers');
+
+  gainersContainer.innerHTML = gainers.map(coin => `
+    <li class="top-mover-item highlight-item">
+      <div class="top-mover-content">
+        <img src="${coin.image}" width="20" class="me-2" alt="${coin.name}">
+        <span>${coin.name}</span>
+      </div>
+      <div class="top-mover-info">
+        <small class="change-positive">${coin.price_change_percentage_24h.toFixed(2)}%</small>
+      </div>
+    </li>
+  `).join('');
+
+  console.log(topGainers)
+
+  losersContainer.innerHTML = losers.map(coin => `
+    <li class="top-mover-item highlight-item">
+      <div class="top-mover-content">
+        <img src="${coin.image}" width="20" class="me-2" alt="${coin.name}">
+        <span>${coin.name}</span>
+      </div>
+      <div class="top-mover-info">
+        <small class="change-negative">${coin.price_change_percentage_24h.toFixed(2)}%</small>
+      </div>
+    </li>
+  `).join('');
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   carregarDashboard();
   renderChart('bitcoin', 30);
   renderCardHighlights();
+  renderTopMovers();
 });
