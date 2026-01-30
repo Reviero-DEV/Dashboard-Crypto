@@ -210,7 +210,7 @@ h3 {
 }
 
 .highlights-list li,
-.list-live li {
+.livers-market li {
     padding: 12px 0;
     border-bottom: 1px solid #2d2f36;
     font-size: 0.9rem;
@@ -233,6 +233,24 @@ h3 {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+}
+
+.highlights-list {
+    max-height: 300px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+@supports (scrollbar-width: thin) {
+  .highlights-list {
+    scrollbar-width: none; /* Esconde no Firefox */
+    scrollbar-color: transparent transparent;
+  }
+  
+  .highlights-list:hover {
+    scrollbar-width: thin; /* Mostra no Firefox */
+    scrollbar-color: #4b5563 transparent;
+  }
 }
 
 .update-info {
@@ -303,7 +321,7 @@ img {
     gap: 5px;
     font-size: 0.8rem;
     text-align: center;
-    padding: 10px 20px;
+    padding: 10px;
     margin-bottom: 20px;
 }
 
