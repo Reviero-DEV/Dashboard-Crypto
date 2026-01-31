@@ -66,3 +66,11 @@ export async function topLosers() {
     return [...data].filter(coins => coins.price_change_percentage_24h < 0).sort((a, b) => a.price_change_percentage_24h - b.price_change_percentage_24h).slice(0, 7);
 
 }
+
+export async function overviewMarket() {
+    const response = await fetch(
+        `${BASE_URL}/global`
+    );
+    const data = await response.json();
+    return data.data;
+}

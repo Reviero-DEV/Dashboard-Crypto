@@ -1,4 +1,4 @@
-import { getTopCoins, getCoinChart, getCardHighlights, topGainers, topLosers } from './api/coingecko.js';
+import { getTopCoins, getCoinChart, getCardHighlights, topGainers, topLosers, overviewMarket} from './api/coingecko.js';
 
 function formatNumberCompact(value) {
   if (value == null) return '--';
@@ -101,19 +101,19 @@ async function renderChart(coinId, days = 30) {
             ticks: {
               maxTicksLimit: 6
             },
-            }
-          },
-          y: {
-            ticks: {
-              callback: value => `$${(value / 1000).toFixed(2)}k`
-            },
-            grid: {
-              drawBorder: false,
-            }
-            }
           }
-        
-      
+        },
+        y: {
+          ticks: {
+            callback: value => `$${(value / 1000).toFixed(2)}k`
+          },
+          grid: {
+            drawBorder: false,
+          }
+        }
+      }
+
+
     });
   } catch (error) {
     console.error('Erro ao renderizar gráfico', error.message);
@@ -122,10 +122,10 @@ async function renderChart(coinId, days = 30) {
 }
 
 async function renderCardHighlights() {
-    const coins = await getCardHighlights();
-    const listContainer = document.getElementById('highlights-list');
+  const coins = await getCardHighlights();
+  const listContainer = document.getElementById('highlights-list');
 
-    listContainer.innerHTML = coins.map(coin => `
+  listContainer.innerHTML = coins.map(coin => `
         <li class="highlight-item">
             <div class="highlight-item-content">
                 <img src="${coin.image}" width="30" class="me-2" alt="${coin.name}">
@@ -139,7 +139,7 @@ async function renderCardHighlights() {
             </div>
         </li>
     `).join('');
-    console.log(listContainer);
+  console.log(listContainer);
 }
 
 async function renderTopMovers() {
@@ -176,9 +176,43 @@ async function renderTopMovers() {
   `).join('');
 }
 
+async function renderMarketOverview() {
+  const priceGlobalEl = document.getElementById('marketGlobalPrice');
+  const percentGlobalEl = document.getElementById('marketCapChange');
+  const volumeGlobal24hEl = document.getElementById('globalVolume24h');
+  const btcDominanceEl = document.getElementById('btcDominance');
+  const activeCryptosEl = document.getElementById('activeCryptos');
+
+  if (!priceGlobalEl || !percentGlobalEl || !volumeGlobal24hEl || !btcDominanceEl || !activeCryptosEl) return;
+  priceGlobalEl.textContent = 'carregando...';
+  percentGlobalEl.textContent = '--';
+  volumeGlobal24hEl.textContent = '--';
+  btcDominanceEl.textContent = '--';
+  activeCryptosEl.textContent = '--';
+
+  try {
+  const data = await overviewMarket();
+  
+  priceGlobalEl.textContent = formatNumberCompact(data.total_market_cap.usd);
+  percentGlobalEl.textContent = `${data.market_cap_change_percentage_24h_usd.toFixed(2)}%`;
+  percentGlobalEl.className = data.market_cap_change_percentage_24h_usd >= 0 ? 'change-positive' : 'change-negative';
+  volumeGlobal24hEl.textContent = formatNumberCompact(data.total_volume.usd);
+  btcDominanceEl.textContent = `${data.market_cap_percentage.btc.toFixed(2)}%`;
+  activeCryptosEl.textContent = data.active_cryptocurrencies;
+  } catch (error) {
+    console.error('Erro ao carregar dashboard', error.message);
+    priceGlobalEl.textContent = '--';
+    percentGlobalEl.textContent = '--';
+    volumeGlobal24hEl.textContent = '--';
+    btcDominanceEl.textContent = '--';
+    activeCryptosEl.textContent = '--';
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   carregarDashboard();
   renderChart('bitcoin', 30);
   renderCardHighlights();
   renderTopMovers();
+  renderMarketOverview();
 });
