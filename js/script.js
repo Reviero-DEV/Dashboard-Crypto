@@ -1,4 +1,4 @@
-import { getTopCoins, getCoinChart, getCardHighlights, topGainers, topLosers, overviewMarket} from './api/coingecko.js';
+import { getTopCoins, getCoinChart, getCardHighlights, topGainers, topLosers, overviewMarket, marketNews } from './api/coingecko.js';
 
 function formatNumberCompact(value) {
   if (value == null) return '--';
@@ -139,7 +139,7 @@ async function renderCardHighlights() {
             </div>
         </li>
     `).join('');
-  console.log(listContainer);
+  // console.log(listContainer);
 }
 
 async function renderTopMovers() {
@@ -161,7 +161,7 @@ async function renderTopMovers() {
     </li>
   `).join('');
 
-  console.log(topGainers)
+  // console.log(topGainers)
 
   losersContainer.innerHTML = losers.map(coin => `
     <li class="top-mover-item highlight-item">
@@ -191,14 +191,14 @@ async function renderMarketOverview() {
   activeCryptosEl.textContent = '--';
 
   try {
-  const data = await overviewMarket();
-  
-  priceGlobalEl.textContent = formatNumberCompact(data.total_market_cap.usd);
-  percentGlobalEl.textContent = `${data.market_cap_change_percentage_24h_usd.toFixed(2)}%`;
-  percentGlobalEl.className = data.market_cap_change_percentage_24h_usd >= 0 ? 'change-positive' : 'change-negative';
-  volumeGlobal24hEl.textContent = formatNumberCompact(data.total_volume.usd);
-  btcDominanceEl.textContent = `${data.market_cap_percentage.btc.toFixed(2)}%`;
-  activeCryptosEl.textContent = data.active_cryptocurrencies;
+    const data = await overviewMarket();
+
+    priceGlobalEl.textContent = formatNumberCompact(data.total_market_cap.usd);
+    percentGlobalEl.textContent = `${data.market_cap_change_percentage_24h_usd.toFixed(2)}%`;
+    percentGlobalEl.className = data.market_cap_change_percentage_24h_usd >= 0 ? 'change-positive' : 'change-negative';
+    volumeGlobal24hEl.textContent = formatNumberCompact(data.total_volume.usd);
+    btcDominanceEl.textContent = `${data.market_cap_percentage.btc.toFixed(2)}%`;
+    activeCryptosEl.textContent = data.active_cryptocurrencies;
   } catch (error) {
     console.error('Erro ao carregar dashboard', error.message);
     priceGlobalEl.textContent = '--';
@@ -209,10 +209,29 @@ async function renderMarketOverview() {
   }
 }
 
+async function renderNews() {
+  const listNews = document.getElementById('news-list');
+  if (!listNews) return;
+  listNews.textContent = 'Carregando notícias...';
+  const news = await marketNews();
+  listNews.innerHTML = news.map(item => `
+    <li class="news-item">
+    <a href="${item.link}" class="news-link">
+    <p class="news-title">${item.title}</p>
+    <span class="news-meta">
+    ${item.source} - ${new Date(item.date).toLocaleDateString('pt-BR')}
+    </span>
+    </a>
+    </li>
+  `).join('');
+
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   carregarDashboard();
   renderChart('bitcoin', 30);
   renderCardHighlights();
   renderTopMovers();
   renderMarketOverview();
+  renderNews()
 });

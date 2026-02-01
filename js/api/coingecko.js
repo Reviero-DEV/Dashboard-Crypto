@@ -74,3 +74,51 @@ export async function overviewMarket() {
     const data = await response.json();
     return data.data;
 }
+
+export async function marketNews() {
+    return [
+        {
+            title: 'Bitcoin mantem consolidação acima de $30.000',
+            link: '#',
+            date: new Date().toISOString(),
+            source: 'Crypto News'
+        },
+        {
+            title: 'Ethereum 2.0: O que esperar da atualização',
+            link: '#',
+            date: new Date().toISOString(),
+            source: 'Blockchain Today'
+        },
+        {
+            title: 'Altcoins ganham força no mercado em alta',
+            link: '#',
+            date: new Date().toISOString(),
+            source: 'Altcoin Daily'
+        },
+        {
+            title: 'Análise técnica: Principais níveis de suporte e resistência',
+            link: '#',
+            date: new Date().toISOString(),
+            source: 'Crypto Analysis'
+        },
+        {
+            title: 'Regulamentação cripto: Impactos no mercado global',
+            link: '#',
+            date: new Date().toISOString(),
+            source: 'Finance Today'
+        },
+        {
+            title: 'NFTs continuam a revolucionar o mercado digital',
+            link: '#',
+            date: new Date().toISOString(),
+            source: 'Digital Art News'
+        },
+        {
+            title: 'DeFi: O futuro das finanças descentralizadas',
+            link: '#',
+            date: new Date().toISOString(),
+            source: 'DeFi Weekly'
+        }
+    ]
+
+}
