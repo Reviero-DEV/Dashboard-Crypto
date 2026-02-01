@@ -93,29 +93,44 @@ select {
 }
 
 .container {
-    display: grid;
-    grid-template-columns: 240px 1fr;
+    display: flex;
     min-height: 100vh;
 }
 
 .sidebar {
     background-color: var(--bg-card);
-    padding: 30px 20px;
+    padding: 10px;
     border-right: 1px solid #2d2f36;
+    transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+    width: 72px;
+}
+
+.sidebar.collapsed .menu-text {
+    display: none;
 }
 
 .sidebar ul {
     list-style: none;
 }
 
-.icon-side button {
+#toggleAside {
+    font-size: 2.3rem;
+    margin-left: auto;
+    float: right;
+}
+
+.sidebar button {
     background: transparent;
     border: none;
     color: var(--text-secondary);
     padding: 15px;
+    margin-bottom: 10px;
     width: 100%;
     text-align: left;
-    font-size: 1rem;
+    font-size: 1.3rem;
     cursor: pointer;
     transition: 0.3s;
     display: flex;
@@ -127,7 +142,7 @@ select {
     color: var(--text-secondary);
 }
 
-.icon-side button:hover {
+.sidebar button:hover {
     color: var(--accent);
     background: rgba(247, 147, 26, 0.1);
     border-radius: 8px;
@@ -147,7 +162,7 @@ section {
 .mda-details {
     border: 1px solid #ffffff1a;
     border-top: none;
-   flex: 1;
+    flex: 1;
 }
 
 .top-livers {
@@ -206,9 +221,10 @@ h3 {
 
 #news-list li {
     list-style: none;
-    margin-bottom:10px;
+    margin-bottom: 10px;
     cursor: pointer;
 }
+
 .news-link {
     text-decoration: none;
     color: inherit;
@@ -220,7 +236,8 @@ h3 {
 
 #news-list span {
     font-size: 0.85rem;
-    color: var(--text-secondary);}
+    color: var(--text-secondary);
+}
 
 .highlights-list,
 .list-live {
@@ -260,15 +277,17 @@ h3 {
 }
 
 @supports (scrollbar-width: thin) {
-  .highlights-list {
-    scrollbar-width: none; /* Esconde no Firefox */
-    scrollbar-color: transparent transparent;
-  }
-  
-  .highlights-list:hover {
-    scrollbar-width: thin; /* Mostra no Firefox */
-    scrollbar-color: #4b5563 transparent;
-  }
+    .highlights-list {
+        scrollbar-width: none;
+        /* Esconde no Firefox */
+        scrollbar-color: transparent transparent;
+    }
+
+    .highlights-list:hover {
+        scrollbar-width: thin;
+        /* Mostra no Firefox */
+        scrollbar-color: #4b5563 transparent;
+    }
 }
 
 .update-info {

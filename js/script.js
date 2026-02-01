@@ -198,7 +198,7 @@ async function renderMarketOverview() {
     percentGlobalEl.className = data.market_cap_change_percentage_24h_usd >= 0 ? 'change-positive' : 'change-negative';
     volumeGlobal24hEl.textContent = formatNumberCompact(data.total_volume.usd);
     btcDominanceEl.textContent = `${data.market_cap_percentage.btc.toFixed(2)}%`;
-    activeCryptosEl.textContent = data.active_cryptocurrencies;
+    activeCryptosEl.textContent = formatNumberCompact(data.active_cryptocurrencies);
   } catch (error) {
     console.error('Erro ao carregar dashboard', error.message);
     priceGlobalEl.textContent = '--';
@@ -226,6 +226,12 @@ async function renderNews() {
   `).join('');
 
 }
+
+
+document.getElementById('toggleAside').addEventListener('click', () => {
+  const sidebar = document.querySelector('.sidebar');
+  sidebar.classList.toggle('collapsed');
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   carregarDashboard();
