@@ -204,6 +204,24 @@ h3 {
     flex-grow: 1;
 }
 
+#news-list li {
+    list-style: none;
+    margin-bottom:10px;
+    cursor: pointer;
+}
+.news-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.news-link:hover .news-title {
+    text-decoration: underline;
+}
+
+#news-list span {
+    font-size: 0.85rem;
+    color: var(--text-secondary);}
+
 .highlights-list,
 .list-live {
     list-style: none;
