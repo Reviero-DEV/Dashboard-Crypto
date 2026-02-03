@@ -227,6 +227,33 @@ async function renderNews() {
 
 }
 
+function initSearch() {
+  const searchInput = document.getElementById('inputSearch');
+  const searchResults = document.getElementById('searchResults');
+  searchInput.addEventListener('input', async (e) => {
+    const query = e.target.value.trim().toLowerCase();
+    if (!query) {
+      searchResults.innerHTML = '';
+      return;
+    }
+    const results = await searchCoins(query);
+    searchResults.innerHTML = results.map(coin => `
+      <li class="search-result-item">
+        <img src="${coin.image}" width="20" class="me-2" alt="${coin.name}">
+        <span>${coin.name}</span>
+      </li>
+    `).join('');
+  });
+}
+
+function searchCoins(query) {
+  return getTopCoins().then(coins => 
+    coins.filter(coin => coin.name.toLowerCase().includes(query) || coin.symbol.toLowerCase().includes(query))
+  );
+}
+
+initSearch();
+
 
 document.getElementById('toggleAside').addEventListener('click', () => {
   const sidebar = document.querySelector('.sidebar');
