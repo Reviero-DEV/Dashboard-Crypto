@@ -20,7 +20,7 @@
       </div>
       <div class="search-bar">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" placeholder="Pesquisar..." id="inputSearch"/>
+        <input type="text" placeholder="Pesquisar..." id="inputSearch" />
         <ul id="searchResults"></ul>
       </div>
       <div class="alerts">
@@ -42,7 +42,7 @@
 
     <div class="container">
       <aside class="sidebar">
-        <button id="toggleAside"> &#8801;</button>
+        <button id="toggleAside">&#8801;</button>
 
         <nav aria-label="Navegação Lateral">
           <ul>
@@ -82,22 +82,15 @@
       <main>
         <section class="top-livers">
           <div class="overview">
-            <div class="card-header">
-              <h3>Panorama</h3>
-              <span class="subtitle">Criptomoedas</span>
-            </div>
+            <h3 id="overview-title">Panorama do Mercado</h3>
+            <iframe
+              src="widgets/tradingViewMarket.html"
+              class="market-iframe"
+              frameborder="0"
+              loading="lazy"
+            ></iframe>
 
-            <div class="price-area">
-              <p class="main-price" id="marketGlobalPrice">77</p>
-              <span class="change-positive" id="marketCapChange">+ 2.31%</span>
-            </div>
-
-             <div class="chart-placeholderw card">
-                  <canvas id="marketOverviewChart"></canvas>
-            </div>
-
-
-              <div class="price-details">
+            <div class="price-details">
               <div class="detail-item">
                 <span>Volume 24h</span>
                 <span class="detailItem-secondary" id="globalVolume24h"
@@ -113,9 +106,8 @@
                 <span id="activeCryptos" class="detailItem-secondary"></span>
               </div>
             </div>
-         
-            </div>
-          
+          </div>
+
           <aside class="notices">
             <div class="card">
               <h3>Notícias Recentes</h3>

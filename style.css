@@ -193,7 +193,7 @@ section {
     margin-bottom: 20px;
 }
 
-#coin-name {
+#coin-name, #overview-title {
     display: flex;
     font-size: 1.7rem;
     align-items: center;
@@ -365,4 +365,12 @@ img {
 .detailItem-secondary {
     color: var(--text-primary);
     font-weight: bold;
+}
+
+.market-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
 }
