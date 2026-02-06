@@ -58,6 +58,23 @@ header {
     width: 100%;
 }
 
+#searchResults {
+    display: flex;
+    position: absolute;
+    background: #71666682;
+    list-style: none;
+    border-radius: 5px;
+    padding: 7px;
+    gap: 9px;
+    flex-direction: column;
+}
+
+li.search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
 .alerts {
     display: flex;
     align-items: center;
