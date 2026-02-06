@@ -230,25 +230,46 @@ async function renderNews() {
 function initSearch() {
   const searchInput = document.getElementById('inputSearch');
   const searchResults = document.getElementById('searchResults');
-  searchInput.addEventListener('input', async (e) => {
-    const query = e.target.value.trim().toLowerCase();
-    if (!query) {
-      searchResults.innerHTML = '';
-      return;
-    }
-    const results = await searchCoins(query);
-    searchResults.innerHTML = results.map(coin => `
-      <li class="search-result-item">
-        <img src="${coin.image}" width="20" class="me-2" alt="${coin.name}">
-        <span>${coin.name}</span>
-      </li>
-    `).join('');
+  let debounceTimer;
+  
+  searchInput.addEventListener('input', (e) => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(async () => {
+      const query = e.target.value.trim().toLowerCase();
+      if (!query) {
+        searchResults.innerHTML = '';
+        searchResults.style.display = 'none';
+        return;
+      }
+
+      const results = await searchCoins(query);
+
+      const topResults = results.slice(0, 8);
+      searchResults.innerHTML = topResults.map(coin => `
+        <li class="search-result-item" data-id="${coin.id}">
+          <img src="${coin.image}" width="20" class="me-2" />
+          <span>${coin.name} (${coin.symbol.toUpperCase()})</span>
+        </li>
+      `).join('');
+    }, 300);
+     searchResults.style.display = searchInput.value.length > 0 ? 'flex' : 'none';
+  });
+  searchResults.addEventListener('click', (e) => {
+    const item = e.target.closest('.search-result-item');
+    if (!item) return;
+    const coinId = item.dataset.id;
+    loadCoinData(coinId);
+    searchResults.innerHTML = '';
+    searchInput.value = '';
   });
 }
 
-function searchCoins(query) {
-  return getTopCoins().then(coins => 
-    coins.filter(coin => coin.name.toLowerCase().includes(query) || coin.symbol.toLowerCase().includes(query))
+async function searchCoins(query) {
+  return getTopCoins().then(coins =>
+    coins.filter(coin =>
+      coin.name.toLowerCase().includes(query) ||
+      coin.symbol.toLowerCase().includes(query)
+    )
   );
 }
 

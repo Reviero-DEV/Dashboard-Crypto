@@ -59,7 +59,7 @@ header {
 }
 
 #searchResults {
-    display: flex;
+    display: none;
     position: absolute;
     background: #71666682;
     list-style: none;
