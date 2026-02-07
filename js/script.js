@@ -231,7 +231,7 @@ function initSearch() {
   const searchInput = document.getElementById('inputSearch');
   const searchResults = document.getElementById('searchResults');
   let debounceTimer;
-  
+
   searchInput.addEventListener('input', (e) => {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(async () => {
@@ -252,7 +252,7 @@ function initSearch() {
         </li>
       `).join('');
     }, 300);
-     searchResults.style.display = searchInput.value.length > 0 ? 'flex' : 'none';
+    searchResults.style.display = searchInput.value.length > 0 ? 'flex' : 'none';
   });
   searchResults.addEventListener('click', (e) => {
     const item = e.target.closest('.search-result-item');
@@ -274,6 +274,33 @@ async function searchCoins(query) {
 }
 
 initSearch();
+
+let currentCoin = 'bitcoin';
+
+async function loadFilterData() {
+  const selDate = document.getElementById('filter-date');
+  if (!selDate) return;
+  const periodMap = {
+    'ult-7d': 7,
+    'ult-3od': 30,
+    'ult-3m': 90,
+    'ult-1y': 365,
+    'all-time': 'max'
+  }
+  const days = periodMap[selDate.value];
+  if (!days) return;
+  console.log('Carregando dados para o período:', selDate.value, days);
+  console.log(renderChart(currentCoin, days))
+  renderChart(currentCoin, days);
+  
+}
+
+document.getElementById('filter-date').addEventListener('change', () => {
+  console.log('carregando filtro');
+  loadFilterData();
+  console.log('filtro carregado');
+});
+
 
 
 document.getElementById('toggleAside').addEventListener('click', () => {
