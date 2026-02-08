@@ -8,17 +8,19 @@ personalizados e analisar tendências com gráficos interativos.
 Um Dashboard de Análise de Criptomoedas que permite aos usuários monitorar em tempo real o desempenho de diferentes criptomoedas, comparar ativos e gerenciar alertas de preço.
 
 ## O que ja esta pronto?
+
+
 ## Roadmap
 **Estruras e Adicao de conteudo**
 [X] Estruturar html
 [x] Estilizar css
-[] Conectar Api
-[] Adicionar conteudo a LiveMarket
-[] Adicionar demais conteudos
-[] Implantar Chart
+[x] Conectar Api
+[x] Adicionar conteudo a LiveMarket
+[x] Adicionar demais conteudos
+[x] Implantar Chart
 **Ajustes**
-[] Seletor de filtro por data
-[] Alteraçao de moeda
+[x] Seletor de filtro por data
+[x] Alteraçao de moeda
 [] Ajustar alarme
 [] Ajustar responsividade
 
@@ -33,19 +35,19 @@ Settings - Configurações do usuário e preferências
 ## Stack utilizada
 **Front-end:** HTML, CSS, Vanilla JS
 
-##Bibliotecas & APIs:
+## Bibliotecas & APIs:
 **Fetch API**
 **Chart.js** 
 
-##API de Dados:
+## API de Dados:
 **CoinGecko API**
 
-##Ferramentas de Desenvolvimento:
+## Ferramentas de Desenvolvimento:
 **VS Code**
 **Git & GitHub**
 **Live Server** 
 
-##Build
+## Build
 **GitPages**
 
 CRIADO POR: NETO REVIERO
