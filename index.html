@@ -50,31 +50,31 @@
         <nav aria-label="Navegação Lateral">
           <ul>
             <li class="icon-side">
-              <button type="button">
+              <button type="button" data-view="home-view">
                 <i class="fa-solid fa-chart-line"></i>
                 <span class="menu-text">Visão geral</span>
               </button>
             </li>
             <li class="icon-side">
-              <button type="button">
+              <button type="button" data-view="news-view">
                 <i class="fa-solid fa-newspaper"></i>
                 <span class="menu-text">Notícias</span>
               </button>
             </li>
             <li class="icon-side">
-              <button type="button">
+              <button type="button" data-view="compare-view">
                 <i class="fa-solid fa-code-compare"></i>
                 <span class="menu-text">Comparar</span>
               </button>
             </li>
             <li class="icon-side">
-              <button type="button">
+              <button type="button" data-view="alerts-view">
                 <i class="fa-solid fa-bell"></i>
                 <span class="menu-text">Alertas</span>
               </button>
             </li>
             <li class="icon-side">
-              <button type="button">
+              <button type="button" data-view="settings-view">
                 <i class="fa-solid fa-cog"></i>
                 <span class="menu-text">Configurações</span>
               </button>
@@ -83,6 +83,7 @@
         </nav>
       </aside>
       <main>
+         <section id="home-view" class="active-view">
         <section class="top-livers">
           <div class="overview">
             <h3 id="overview-title">Panorama do Mercado</h3>
@@ -179,6 +180,11 @@
             </div>
           </aside>
         </section>
+        </section>
+        <section id="news-view" class="hidden"></section>
+        <section id="compare-view" class="hidden"></section>
+        <section id="alerts-view" class="hidden"></section>
+        <section id="settings-view" class="hidden"></section>
       </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
