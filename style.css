@@ -155,10 +155,6 @@ select {
     gap: 10px;
 }
 
-/* .icon-side button i {
-    color: var(--text-secondary);
-} */
-
 .sidebar button:hover,
 li.search-result-item:hover {
     color: var(--accent);
@@ -167,15 +163,6 @@ li.search-result-item:hover {
     cursor: pointer;
 }
 
-/* #home-view,
-#news-view,
-#compare-view,
-#alerts-view,
-#settings-view {
-    display: flex;
-    padding: 0;
-    width: 100%;
-} */
 
 
 section {
@@ -187,10 +174,6 @@ section {
     border-top: none;
     flex: 1;
 }
-
-/* .top-livers {
-    width: 30%;
-} */
 
 .card-header {
     display: flex;
@@ -303,13 +286,11 @@ h3 {
 @supports (scrollbar-width: thin) {
     .highlights-list {
         scrollbar-width: none;
-        /* Esconde no Firefox */
         scrollbar-color: transparent transparent;
     }
 
     .highlights-list:hover {
         scrollbar-width: thin;
-        /* Mostra no Firefox */
         scrollbar-color: #4b5563 transparent;
     }
 }
@@ -344,7 +325,6 @@ img {
 
 .change-negative {
     color: var(--negative);
-    /* background: rgba(255, 61, 0, 0.1); */
     padding: 4px 8px;
     border-radius: 6px;
     font-size: 0.8rem;
