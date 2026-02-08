@@ -16,6 +16,12 @@ function formatNumberCompact(value) {
   }
 }
 
+const appState = {
+  coin: 'bitcoin',
+  days: 30,
+  currency: 'usd'
+}
+
 async function carregarDashboard() {
   const nameEl = document.getElementById('coin-name');
   const priceEl = document.getElementById('coin-price');
@@ -64,12 +70,12 @@ async function carregarDashboard() {
 
 let cryptoChart = null;
 
-async function renderChart(coinId, days = 30) {
+async function renderChart(coinId, days = 30, currency = 'usd') {
   const canvas = document.getElementById('coinChart');
   if (!canvas) return;
 
   try {
-    const chartData = await getCoinChart(coinId, days);
+    const chartData = await getCoinChart(coinId, days, currency);
     const labels = chartData.prices.map(price => {
       const date = new Date(price[0]);
       return date.toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit' });
@@ -85,7 +91,7 @@ async function renderChart(coinId, days = 30) {
       data: {
         labels: labels,
         datasets: [{
-          label: 'Preço em USD',
+          label: `Preço em ${appState.currency.toUpperCase()}`,
           data: dataPoints,
           borderColor: 'rgba(75, 192, 192, 1)',
           tension: 0.4,
@@ -287,11 +293,10 @@ async function loadFilterData() {
     'ult-1y': 365,
     'all-time': 'max'
   }
-  const days = periodMap[selDate.value];
-  if (!days) return;
-  console.log('Carregando dados para o período:', selDate.value, days);
-  console.log(renderChart(currentCoin, days))
-  renderChart(currentCoin, days);
+ appState.days = periodMap[selDate.value]  || 30;
+  console.log('Carregando dados para o período:', selDate.value, appState.days);
+  console.log(renderChart(currentCoin, appState.days))
+  renderChart(appState.coin, appState.days, appState.currency);
   
 }
 
@@ -301,6 +306,25 @@ document.getElementById('filter-date').addEventListener('change', () => {
   console.log('filtro carregado');
 });
 
+async function loadFilterCurrency() {
+  const selCurrency = document.querySelector('.select-mda');
+  if (!selCurrency) return;
+
+  const currencyMap = {
+    'USD': 'usd',
+    'EUR': 'eur',
+    'BRL': 'brl'
+  }
+  appState.currency = currencyMap[selCurrency.value] || 'usd';
+  console.log('Carregando dados para a moeda:', selCurrency.value, appState.currency);
+  renderChart(appState.coin, appState.days, appState.currency);
+  }
+
+document.querySelector('.select-mda').addEventListener('change', () => {
+  console.log('carregando filtro de moeda');
+  loadFilterCurrency();
+  console.log('filtro de moeda carregado');
+});
 
 
 document.getElementById('toggleAside').addEventListener('click', () => {

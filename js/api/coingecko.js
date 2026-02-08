@@ -10,9 +10,9 @@ export async function getTopCoins() {
     return response.json();
 }
 
-export async function getCoinChart(coinId, days = 30) {
+export async function getCoinChart(coinId, days = 30, currency = 'usd') {
     const response = await fetch(
-        `${BASE_URL}/coins/${coinId}/market_chart?vs_currency=usd&days=${days}`
+        `${BASE_URL}/coins/${coinId}/market_chart?vs_currency=${currency}&days=${days}`
     );
     if (!response.ok) {
         throw new Error(`Erro ${response.status} ao buscar dados do gráfico`);
