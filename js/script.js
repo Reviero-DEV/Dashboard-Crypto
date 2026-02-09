@@ -332,9 +332,40 @@ document.getElementById('toggleAside').addEventListener('click', () => {
   sidebar.classList.toggle('collapsed');
 });
 
+function showView(viewId, button) {
+  const views = document.querySelectorAll ('main > section');
+  const buttons = document.querySelectorAll ('.sidebar button');
+  views.forEach (view => {
+    view.classList.add ('hidden');
+    view.classList.remove ('active-view');
+  });
+
+  buttons.forEach (btn => btn.classList.remove ('active-btn'));
+  const activeView = document.getElementById (viewId);
+  if (activeView) {
+    activeView.classList.remove ('hidden');
+    activeView.classList.add ('active-view');
+  }
+  button.classList.add ('active-btn');
+}
+
+document.querySelectorAll ('.sidebar button[data-view]')
+  .forEach(button => {
+    button.addEventListener ('click', function () {
+      const viewId = this.dataset.view ;
+      showView(viewId, this);
+    });
+  });
+  
+window.addEventListener ('DOMContentLoaded', () => {
+  const firstButton = document.querySelector ('.sidebar button[data-view="home-view"]');
+  if (firstButton) {
+    firstButton.classList.add ('active-btn');
+  } });
+
 document.addEventListener('DOMContentLoaded', () => {
   carregarDashboard();
-  renderChart('bitcoin', 30);
+  renderChart(appState.coin, appState.days, appState.currency);
   renderCardHighlights();
   renderTopMovers();
   renderMarketOverview();
