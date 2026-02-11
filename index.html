@@ -20,12 +20,12 @@
       </div>
       <div class="block-search">
         <div class="search-bar">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" placeholder="Pesquisar..." id="inputSearch" />
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Pesquisar..." id="inputSearch" />
+        </div>
+        <ul id="searchResults"></ul>
       </div>
-      <ul id="searchResults"></ul>
-      </div>
-      
+
       <div class="alerts">
         <button aria-label="alertas" class="icon-alerts">
           <i class="fa-solid fa-bell"></i>
@@ -44,7 +44,7 @@
     </header>
 
     <div class="container">
-      <aside class="sidebar">
+      <aside class="sidebar collapsed">
         <button id="toggleAside">&#8801;</button>
 
         <nav aria-label="Navegação Lateral">
@@ -83,106 +83,139 @@
         </nav>
       </aside>
       <main>
-         <section id="home-view" class="active-view">
-        <section class="top-livers">
-          <div class="overview">
-            <h3 id="overview-title">Panorama do Mercado</h3>
-            <iframe
-              src="widgets/tradingViewMarket.html"
-              class="market-iframe"
-              frameborder="0"
-              loading="lazy"
-            ></iframe>
+        <section id="home-view" class="active-view">
+          <section class="top-livers">
+            <div class="overview">
+              <h3 id="overview-title">Panorama do Mercado</h3>
+              <iframe
+                src="widgets/tradingViewMarket.html"
+                class="market-iframe"
+                frameborder="0"
+                loading="lazy"
+              ></iframe>
 
-            <div class="price-details">
-              <div class="detail-item">
-                <span>Volume 24h</span>
-                <span class="detailItem-secondary" id="globalVolume24h"
-                  >+2.31%</span
-                >
-              </div>
-              <div class="detail-item">
-                <span>Dominância BTC</span>
-                <span id="btcDominance" class="detailItem-secondary"></span>
-              </div>
-              <div class="detail-item">
-                <span>Criptomoedas Ativas</span>
-                <span id="activeCryptos" class="detailItem-secondary"></span>
-              </div>
-            </div>
-          </div>
-
-          <aside class="notices">
-            <div class="card">
-              <h3>Notícias Recentes</h3>
-              <ul id="news-list"></ul>
-            </div>
-          </aside>
-        </section>
-
-        <section class="mda-details">
-          <div class="main-crypto-card">
-            <div class="card-header">
-              <h3 id="coin-name"></h3>
-              <select class="select-mda" aria-label="Selecionar Moeda">
-                <option value="USD">US Dollar</option>
-                <option value="EUR">Euro</option>
-                <option value="BRL">Real Brasileiro</option>
-              </select>
-            </div>
-            <div class="price-area">
-              <p class="main-price" id="coin-price"></p>
-              <span class="change-positive" id="percentChange">+ 2.31%</span>
-            </div>
-
-            <div class="chart-placeholderw card">
-              <canvas id="coinChart"></canvas>
-            </div>
-
-            <div class="price-details">
-              <div class="detail-item">
-                <span>Alteração em 24 horas</span>
-                <span class="change-positive" id="percentChange24h"
-                  >+2.31%</span
-                >
-              </div>
-              <div class="detail-item">
-                <span>24h Alta/Baixa</span>
-                <span id="highLow" class="detailItem-secondary"></span>
-              </div>
-              <div class="detail-item">
-                <span>24h Volume</span>
-                <span id="volume" class="detailItem-secondary"></span>
+              <div class="price-details">
+                <div class="detail-item">
+                  <span>Volume 24h</span>
+                  <span class="detailItem-secondary" id="globalVolume24h"
+                    >+2.31%</span
+                  >
+                </div>
+                <div class="detail-item">
+                  <span>Dominância BTC</span>
+                  <span id="btcDominance" class="detailItem-secondary"></span>
+                </div>
+                <div class="detail-item">
+                  <span>Criptomoedas Ativas</span>
+                  <span id="activeCryptos" class="detailItem-secondary"></span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="card highlights">
-            <h3>Destaques</h3>
-            <ul class="highlights-list" id="highlights-list"></ul>
-          </div>
-        </section>
+            <aside class="notices">
+              <div class="card">
+                <h3>Notícias Recentes</h3>
+                <ul id="news-list"></ul>
+              </div>
+            </aside>
+          </section>
 
-        <section class="section-liveMarket">
-          <aside class="live-market-main">
-            <div class="card">
-              <h3>Maiores ganhos</h3>
-              <p class="update-info">ultimas 24h</p>
+          <section class="mda-details">
+            <div class="main-crypto-card">
+              <div class="card-header">
+                <h3 id="coin-name"></h3>
+                <select class="select-mda" aria-label="Selecionar Moeda">
+                  <option value="USD">US Dollar</option>
+                  <option value="EUR">Euro</option>
+                  <option value="BRL">Real Brasileiro</option>
+                </select>
+              </div>
+              <div class="price-area">
+                <p class="main-price" id="coin-price"></p>
+                <span class="change-positive" id="percentChange">+ 2.31%</span>
+              </div>
 
-              <ul id="top-gainers" class="livers-market"></ul>
+              <div class="chart-placeholderw card">
+                <canvas id="coinChart"></canvas>
+              </div>
+
+              <div class="price-details">
+                <div class="detail-item">
+                  <span>Alteração em 24 horas</span>
+                  <span class="change-positive" id="percentChange24h"
+                    >+2.31%</span
+                  >
+                </div>
+                <div class="detail-item">
+                  <span>24h Alta/Baixa</span>
+                  <span id="highLow" class="detailItem-secondary"></span>
+                </div>
+                <div class="detail-item">
+                  <span>24h Volume</span>
+                  <span id="volume" class="detailItem-secondary"></span>
+                </div>
+              </div>
             </div>
 
-            <div class="card">
-              <h3>Maiores perdas</h3>
-              <p class="update-info">ultimas 24h</p>
-
-              <ul id="top-losers" class="livers-market"></ul>
+            <div class="card highlights">
+              <h3>Destaques</h3>
+              <ul class="highlights-list" id="highlights-list"></ul>
             </div>
-          </aside>
-        </section>
+          </section>
+
+          <section class="section-liveMarket">
+            <aside class="live-market-main">
+              <div class="card">
+                <h3>Maiores ganhos</h3>
+                <p class="update-info">ultimas 24h</p>
+
+                <ul id="top-gainers" class="livers-market"></ul>
+              </div>
+
+              <div class="card">
+                <h3>Maiores perdas</h3>
+                <p class="update-info">ultimas 24h</p>
+
+                <ul id="top-losers" class="livers-market"></ul>
+              </div>
+            </aside>
+          </section>
         </section>
         <section id="news-view" class="hidden"></section>
-        <section id="compare-view" class="hidden"></section>
+        <section id="compare-view" class="hidden">
+          <section class="compare-page">
+            <h2>Comparação de Moedas</h2>
+            <div class="compare-controls">
+              <div id="search-coinA">
+                 <input id="coinAInput" type="text" placeholder="Ex: bitcoin" />
+                 <ul id="searchResults-coinA" class="compare-searchResults"></ul>
+              </div>
+             <div id="search-coinB">
+              <input id="coinBInput" type="text" placeholder="Ex: ethereum" />
+              <ul id="searchResults-coinB" class="compare-searchResults"></ul>
+             </div>
+              
+              <button id="compareBtn">Comparar</button>
+            </div>
+            <div class="compare-cards">
+              <div class="coin-card" id="coinA">
+                <h3 id="name-coinA">Moeda 1</h3>
+                <p class="price">--</p>
+                <p class="change">--</p>
+                <p class="marketcap">--</p>
+              </div>
+              <div class="coin-card" id="coinB">
+                <h3 id="name-coinB">Moeda 2</h3>
+                <p class="price">--</p>
+                <p class="change">--</p>
+                <p class="marketcap">--</p>
+              </div>
+            </div>
+            <div class="chartCompare-grid">
+              <canvas id="compareChart"></canvas>
+            </div>
+          </section>
+        </section>
         <section id="alerts-view" class="hidden"></section>
         <section id="settings-view" class="hidden"></section>
       </main>
