@@ -58,7 +58,7 @@ header {
     width: 100%;
 }
 
-#searchResults {
+#searchResults, .compare-searchResults {
     display: none;
     position: absolute;
     background: #71666682;
@@ -69,7 +69,7 @@ header {
     flex-direction: column;
 }
 
-li.search-result-item {
+li.search-result-item, .compare-searchResults li {
     display: flex;
     align-items: center;
     gap: 7px;
@@ -156,7 +156,8 @@ select {
 }
 
 .sidebar button:hover,
-li.search-result-item:hover {
+li.search-result-item:hover,
+.compare-searchResults li:hover {
     color: var(--accent);
     background: rgba(247, 147, 26, 0.1);
     border-radius: 8px;
@@ -391,4 +392,64 @@ img {
 
 .sidebar button.active-btn {
     color: var(--accent);
+}
+
+.compare-page {
+    padding: 20px;
+}
+
+.compare-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.compare-controls input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    flex: 1;
+}
+
+.compare-controls button {
+    color: #ffffff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: var(--accent);
+    font-weight: bolder;
+    border: none;
+    cursor: pointer;
+}
+
+button#compareBtn:hover {
+    background: #bd8139;
+    transition: 0.4s ease-out;
+}
+
+.compare-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.coin-card {
+    background: #111;
+    border-radius: 12px;
+    padding: 16px;
+    min-height: 140px;
+}
+
+.coin-card h3 {
+    margin-bottom: 10px;
+}
+
+.coin-card p {
+    margin: 4px 0;
+}
+
+.chartCompare-grid {
+    background: #111;
+    padding: 16px;
+    border-radius: 12px;
 }
