@@ -363,11 +363,64 @@ window.addEventListener ('DOMContentLoaded', () => {
     firstButton.classList.add ('active-btn');
   } });
 
+  function searchCompare(inputId, resultsId, loadCoinData) {
+  const input = document.getElementById(inputId);
+  const resultsCont = document.getElementById(resultsId);
+
+  let debounceTimerComp;
+
+  input.addEventListener('input', (e) => {
+    clearTimeout(debounceTimerComp);
+    debounceTimerComp = setTimeout(async () => {
+      const query = e.target.value.trim().toLowerCase();
+      console.log('Verificando busca de:', query, 'do input:', inputId, 'para o container:', resultsCont)
+      if (!query) {
+        resultsCont.innerHTML = '';
+        resultsCont.style.display = 'none';
+        return;
+      }
+
+      const results = await searchCoins(query);
+      const topResults = results.slice(0, 8);
+
+      console.log(topResults);
+      resultsCont.innerHTML = topResults.map(coin => `
+        <li class="search-result-item" data-id="${coin.id}">
+          <img src="${coin.image}" width="20" class="me-2" />
+          <span>${coin.name} (${coin.symbol.toUpperCase()})</span>
+        </li>
+      `).join('');
+    }, 100);
+
+
+    resultsCont.style.display = input.value.length > 0 ? 'flex' : 'none';
+  });
+  resultsCont.addEventListener('click', (e) => {
+    const item = e.target.closest('.search-result-item');
+    if (!item) return;
+    const coinId = item.dataset.id;
+    loadCoinData(coinId);
+    resultsCont.innerHTML = '';
+    resultsCont.style.display = 'none';
+    input.value = '';
+  });
+  }
+
+  
+
 document.addEventListener('DOMContentLoaded', () => {
   carregarDashboard();
   renderChart(appState.coin, appState.days, appState.currency);
   renderCardHighlights();
   renderTopMovers();
   renderMarketOverview();
-  renderNews()
+  renderNews();
+  searchCompare('coinAInput', 'searchResults-coinA', (coinId) => {
+    coinA = coinId;
+    console.log('Selecionada moeda A:', coinId)
+  });
+  searchCompare('coinBInput', 'searchResults-coinB', (coinId) => {
+    coinB = coinId;
+    console.log('Selecionada moeda B:', coinId)
+  })
 });
