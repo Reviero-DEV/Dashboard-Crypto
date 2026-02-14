@@ -406,6 +406,89 @@ window.addEventListener ('DOMContentLoaded', () => {
   });
   }
 
+  let compareChart = null;
+  let coinA = 'bitcoin';
+  let coinB = 'ethereum';
+
+  function formatPercentage(prices) {
+    const base = prices[0];
+    return prices.map(price => ((price - base) / base)  * 100);
+
+  }
+
+  async function renderChartCompare(coinA, coinB, days = 30, currency = 'usd') {
+  const canvasCompare = document.getElementById('compareChart');
+  if (!canvasCompare) return;
+  try {
+    const chartDataA = await getCoinChart(coinA, days, currency);
+    const chartDataB = await getCoinChart(coinB, days, currency);
+
+    const labelsA = chartDataA.prices.map(price => {
+      const date = new Date(price[0]);
+      return date.toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit' });
+    });
+
+    const labelsB = chartDataB.prices.map(price => {
+      const date = new Date(price[0]);
+      return date.toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit' });
+    });
+    const pricesA = chartDataA.prices.map(p => p[1]);
+    const pricesB = chartDataB.prices.map(p => p[1]);
+    const dataPointsA = formatPercentage(pricesA);
+    const dataPointsB = formatPercentage(pricesB);
+
+    if (compareChart) {
+      compareChart.destroy();
+    }
+
+    compareChart = new Chart(canvasCompare.getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: labelsA, labelsB,
+        datasets: [{
+          label: `${coinA} Variaçao %`,
+          data: dataPointsA, 
+          borderColor: 'rgba(75, 192, 192, 1)',
+          tension: 0.4,
+          borderWidth: 2,
+          pointRadius: 0,
+          fill: false,
+        }, {
+          label: `${coinB} Variaçao %`,
+          data: dataPointsB,
+          borderColor: 'rgb(130, 177, 44)',
+          tension: 0.4,
+          borderWidth: 1,
+          pointRadius: 0,
+          fill: false,
+        },]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            ticks: {
+              maxTicksLimit: 6
+            },
+          }
+        },
+        y: {
+          ticks: {
+            callback: value => `$${(value / 1000).toFixed(2)}k`
+          },
+          grid: {
+            drawBorder: false,
+          }
+        }
+      }
+
+
+    });
+  } catch (error) {
+    console.error('Erro ao renderizar gráfico de comparacao:', error.message);
+  }
+  console.log(window.Chart)
+}
   
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -422,5 +505,6 @@ document.addEventListener('DOMContentLoaded', () => {
   searchCompare('coinBInput', 'searchResults-coinB', (coinId) => {
     coinB = coinId;
     console.log('Selecionada moeda B:', coinId)
-  })
+  });
+  renderChartCompare(coinA, coinB, appState.days, appState.currency);
 });
