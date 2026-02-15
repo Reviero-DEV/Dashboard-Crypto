@@ -118,6 +118,145 @@ export async function marketNews() {
             link: '#',
             date: new Date().toISOString(),
             source: 'DeFi Weekly'
+        },
+        {
+            title: 'Ethereum 3.0: Comunidade aprova nova fase de escalabilidade para março',
+            link: '#',
+            date: new Date().toISOString(),
+            source: 'Tech Radar'
+        },
+        {
+            title: 'Solana ultrapassa volume diário do Ethereum em mercados NFT',
+            link: '#',
+            date: new Date().toISOString(),
+            source: 'Solana Daily'
+        },
+        {
+            title: 'Banco Central do Brasil anuncia novos testes com contratos inteligentes no DREX',
+            link: '#',
+            date: new Date().toISOString(),
+            source: 'Valor Econômico'
+        },
+        {
+            title: 'Bitcoin rompe resistência histórica e busca novos alvos em $125.000',
+            link: '#',
+            date: new Date().toISOString(),
+            source: 'Crypto News'
+        },
+        {
+            title: 'Ethereum registra queda nas taxas de gás após implementação de novo EIP',
+            link: '#',
+            date: new Date().toISOString(),
+            source: 'Ether World'
+        },
+        {
+            title: 'Solana lança Saga Phone 3 com foco em IA e pagamentos nativos',
+            link: '#',
+            date: new Date().toISOString(),
+            source: 'Solana Daily'
+        },
+        {
+            title: 'Ripple (XRP) vence última etapa judicial e expande operações na Ásia',
+            link: '#',
+            date: new Date().toISOString(),
+            source: 'Finance Magnates'
+        },
+        {
+            title: 'CVM brasileira aprova novo ETF focado em Real World Assets (RWA)',
+            link: '#',
+            date: new Date().toISOString(),
+            source: 'Valor Econômico'
+        },
+        // --------------//
+        {
+            title: 'Regulação Cripto: G20 estabelece padrões globais para stablecoins',
+            link: '#',
+            date: new Date(Date.now() - (3 * 24 * 60 * 60 * 1000)).toISOString(),
+            source: 'Reuters'
+        },
+        {
+            title: 'Chainlink integra sistemas de pagamento Swift para ativos tokenizados',
+            link: '#',
+            date: new Date(Date.now() - (26 * 60 * 60 * 1000)).toISOString(),
+            source: 'Blockchain Insider'
+        },
+        {
+            title: 'Nvidia lança chips otimizados para mineração sustentável de ZK-Proofs',
+            link: '#',
+            date: new Date(Date.now() - (3 * 24 * 60 * 60 * 1000)).toISOString(),
+            source: 'Hardware Zone'
+        },
+        {
+            title: 'Adoção de Lightning Network cresce 300% em pagamentos de varejo na América Latina',
+            link: '#',
+            date: new Date(Date.now() - (2 * 24 * 60 * 60 * 1000)).toISOString(),
+            source: 'Crypto Economy'
+        },
+        {
+            title: 'Hacker devolve $40 milhões após falha em protocolo de empréstimo DeFi',
+            link: '#',
+            date: new Date(Date.now() - (3 * 24 * 60 * 60 * 1000)).toISOString(),
+            source: 'Security Watch'
+        },
+        {
+            title: 'Cardano finaliza transição para governança 100% on-chain',
+            link: '#',
+            date: new Date(Date.now() - (2 * 24 * 60 * 60 * 1000)).toISOString(),
+            source: 'Cardano Feed'
+        },
+        {
+            title: 'Tokens de Real World Assets (RWA) atingem capitalização recorde',
+            link: '#',
+            date: new Date(Date.now() - (26 * 60 * 60 * 1000)).toISOString(),
+            source: 'Forbes'
+        },
+        {
+            title: 'Polkadot 2.0: Nova arquitetura de leilões reduz custos para desenvolvedores',
+            link: '#',
+            date: new Date(Date.now() - (3 * 24 * 60 * 60 * 1000)).toISOString(),
+            source: 'Dot News'
+        },
+        {
+            title: 'Regulação Cripto: G20 estabelece padrões globais para stablecoins',
+            link: '#',
+            date: new Date(Date.now() - (26 * 60 * 60 * 1000)).toISOString(),
+            source: 'Reuters'
+        },
+        {
+            title: 'Chainlink integra sistemas de pagamento Swift para ativos tokenizados',
+            link: '#',
+            date: new Date(Date.now() - (2 * 24 * 60 * 60 * 1000)).toISOString(),
+            source: 'Blockchain Insider'
+        },
+        {
+            title: 'Nvidia lança chips otimizados para mineração sustentável de ZK-Proofs',
+            link: '#',
+            date: new Date(Date.now() - (3 * 24 * 60 * 60 * 1000)).toISOString(),
+            source: 'Hardware Zone'
+        },
+        {
+            title: 'Adoção de Lightning Network cresce 300% em pagamentos no varejo',
+            link: '#',
+            date: new Date(Date.now() - (4 * 24 * 60 * 60 * 1000)).toISOString(),
+            source: 'Crypto Economy'
+        },
+        {
+            title: 'Hacker devolve $40 milhões após falha em protocolo DeFi',
+            link: '#',
+            date: new Date(Date.now() - (5 * 24 * 60 * 60 * 1000)).toISOString(),
+            source: 'Security Watch'
+        },
+        {
+            title: 'Cardano finaliza transição para governança 100% on-chain',
+            link: '#',
+            date: new Date(Date.now() - (6 * 24 * 60 * 60 * 1000)).toISOString(),
+            source: 'Cardano Feed'
+        },
+        {
+            title: 'Tokens de Real World Assets (RWA) atingem capitalização recorde',
+            link: '#',
+            date: new Date(Date.now() - (7 * 24 * 60 * 60 * 1000)).toISOString(),
+            source: 'Forbes'
         }
     ]
 

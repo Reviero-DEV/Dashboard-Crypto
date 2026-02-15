@@ -145,7 +145,6 @@ async function renderCardHighlights() {
             </div>
         </li>
     `).join('');
-  // console.log(listContainer);
 }
 
 async function renderTopMovers() {
@@ -215,12 +214,8 @@ async function renderMarketOverview() {
   }
 }
 
-async function renderNews() {
-  const listNews = document.getElementById('news-list');
-  if (!listNews) return;
-  listNews.textContent = 'Carregando notícias...';
-  const news = await marketNews();
-  listNews.innerHTML = news.map(item => `
+function createNewsItem(item) {
+  return `
     <li class="news-item">
     <a href="${item.link}" class="news-link">
     <p class="news-title">${item.title}</p>
@@ -229,7 +224,27 @@ async function renderNews() {
     </span>
     </a>
     </li>
-  `).join('');
+  `;
+}
+
+async function renderNews() {
+  const highlightsNews = document.getElementById('news-list');
+  const newsToday = document.getElementById('latest-news');
+  const newsLatest = document.getElementById('news-week');
+
+  if (!highlightsNews || !newsToday || !newsLatest) return;
+  highlightsNews.textContent = 'Carregando notícias...';
+  newsToday.textContent = 'Carregando notícias...';
+  newsLatest.textContent = 'Carregando notícias...';
+
+  const news = await marketNews();
+  
+  const hoje = new Date().toISOString().split('T')[0];
+  const noticiasHoje = news.filter(n => n.date.startsWith(hoje));
+  const noticiasSemana = news.filter(n => !n.date.startsWith(hoje));
+  highlightsNews.innerHTML = news.slice(0,7).map(createNewsItem).join('');
+  newsToday.innerHTML = noticiasHoje.map(createNewsItem).join('');
+  newsLatest.innerHTML = noticiasSemana.map(createNewsItem).join('');
 
 }
 
