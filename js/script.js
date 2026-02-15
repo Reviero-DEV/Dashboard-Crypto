@@ -54,7 +54,7 @@ async function carregarDashboard() {
     percentChangeEl.className = btc.price_change_percentage_7d_in_currency >= 0 ? 'change-positive' : 'change-negative';
     percentChange24hEl.textContent = `${btc.price_change_percentage_24h.toFixed(2)}%`;
     percentChange24hEl.className = btc.price_change_percentage_24h >= 0 ? 'change-positive' : 'change-negative';
-    highLowEl.textContent = `$${btc.high_24h.toLocaleString('pt-BR', { minimumFractionDigits: 2 })} / $${btc.low_24h.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+    highLowEl.textContent = `${btc.high_24h.toLocaleString('pt-BR', { minimumFractionDigits: 2 })} / $${btc.low_24h.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
     volumeEl.textContent = formatNumberCompact(btc.total_volume);
 
   } catch (error) {
@@ -124,7 +124,7 @@ async function renderChart(coinId, days = 30, currency = 'usd') {
   } catch (error) {
     console.error('Erro ao renderizar gráfico', error.message);
   }
-  console.log(window.Chart)
+  // console.log(window.Chart)
 }
 
 async function renderCardHighlights() {
@@ -293,11 +293,11 @@ async function loadFilterData() {
     'ult-1y': 365,
     'all-time': 'max'
   }
- appState.days = periodMap[selDate.value]  || 30;
+  appState.days = periodMap[selDate.value] || 30;
   console.log('Carregando dados para o período:', selDate.value, appState.days);
   console.log(renderChart(currentCoin, appState.days))
   renderChart(appState.coin, appState.days, appState.currency);
-  
+
 }
 
 document.getElementById('filter-date').addEventListener('change', () => {
@@ -318,7 +318,7 @@ async function loadFilterCurrency() {
   appState.currency = currencyMap[selCurrency.value] || 'usd';
   console.log('Carregando dados para a moeda:', selCurrency.value, appState.currency);
   renderChart(appState.coin, appState.days, appState.currency);
-  }
+}
 
 document.querySelector('.select-mda').addEventListener('change', () => {
   console.log('carregando filtro de moeda');
@@ -333,37 +333,38 @@ document.getElementById('toggleAside').addEventListener('click', () => {
 });
 
 function showView(viewId, button) {
-  const views = document.querySelectorAll ('main > section');
-  const buttons = document.querySelectorAll ('.sidebar button');
-  views.forEach (view => {
-    view.classList.add ('hidden');
-    view.classList.remove ('active-view');
+  const views = document.querySelectorAll('main > section');
+  const buttons = document.querySelectorAll('.sidebar button');
+  views.forEach(view => {
+    view.classList.add('hidden');
+    view.classList.remove('active-view');
   });
 
-  buttons.forEach (btn => btn.classList.remove ('active-btn'));
-  const activeView = document.getElementById (viewId);
+  buttons.forEach(btn => btn.classList.remove('active-btn'));
+  const activeView = document.getElementById(viewId);
   if (activeView) {
-    activeView.classList.remove ('hidden');
-    activeView.classList.add ('active-view');
+    activeView.classList.remove('hidden');
+    activeView.classList.add('active-view');
   }
-  button.classList.add ('active-btn');
+  button.classList.add('active-btn');
 }
 
-document.querySelectorAll ('.sidebar button[data-view]')
+document.querySelectorAll('.sidebar button[data-view]')
   .forEach(button => {
-    button.addEventListener ('click', function () {
-      const viewId = this.dataset.view ;
+    button.addEventListener('click', function () {
+      const viewId = this.dataset.view;
       showView(viewId, this);
     });
   });
-  
-window.addEventListener ('DOMContentLoaded', () => {
-  const firstButton = document.querySelector ('.sidebar button[data-view="home-view"]');
-  if (firstButton) {
-    firstButton.classList.add ('active-btn');
-  } });
 
-  function searchCompare(inputId, resultsId, loadCoinData) {
+window.addEventListener('DOMContentLoaded', () => {
+  const firstButton = document.querySelector('.sidebar button[data-view="home-view"]');
+  if (firstButton) {
+    firstButton.classList.add('active-btn');
+  }
+});
+
+function searchCompare(inputId, resultsId, loadCoinData) {
   const input = document.getElementById(inputId);
   const resultsCont = document.getElementById(resultsId);
 
@@ -404,19 +405,19 @@ window.addEventListener ('DOMContentLoaded', () => {
     resultsCont.style.display = 'none';
     input.value = '';
   });
-  }
+}
 
-  let compareChart = null;
-  let coinA = 'bitcoin';
-  let coinB = 'ethereum';
+let compareChart = null;
+let coinA = 'bitcoin';
+let coinB = 'ethereum';
 
-  function formatPercentage(prices) {
-    const base = prices[0];
-    return prices.map(price => ((price - base) / base)  * 100);
+function formatPercentage(prices) {
+  const base = prices[0];
+  return prices.map(price => ((price - base) / base) * 100);
 
-  }
+}
 
-  async function renderChartCompare(coinA, coinB, days = 30, currency = 'usd') {
+async function renderChartCompare(coinA, coinB, days = 30, currency = 'usd') {
   const canvasCompare = document.getElementById('compareChart');
   if (!canvasCompare) return;
   try {
@@ -447,7 +448,7 @@ window.addEventListener ('DOMContentLoaded', () => {
         labels: labelsA, labelsB,
         datasets: [{
           label: `${coinA} Variaçao %`,
-          data: dataPointsA, 
+          data: dataPointsA,
           borderColor: 'rgba(75, 192, 192, 1)',
           tension: 0.4,
           borderWidth: 2,
@@ -487,9 +488,44 @@ window.addEventListener ('DOMContentLoaded', () => {
   } catch (error) {
     console.error('Erro ao renderizar gráfico de comparacao:', error.message);
   }
-  console.log(window.Chart)
+  // console.log(window.Chart)
 }
-  
+
+async function renderDetailsCompare(coinId, prefix, days = 30, currency = 'usd') {
+  const nameEl = document.getElementById(`name-${prefix}`);
+  const priceEl = document.getElementById(`price-${prefix}`);
+  const percentChangeEl = document.getElementById(`percentChange-${prefix}`);
+  const percentChange24hEl = document.getElementById(`percentChange24h-${prefix}`);
+  const highLowEl = document.getElementById(`highLow-${prefix}`);
+  const volumeEl = document.getElementById(`volume-${prefix}`);
+
+  try {
+    const data = await getTopCoins(days, currency);
+    const coin = data.find(d => d.id === coinId);
+
+    nameEl.textContent = coin.name;
+    console.log(coin.name);
+    priceEl.textContent = `${coin.current_price.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: currency.toUpperCase()
+    })}`;
+    percentChangeEl.textContent = `${coin.price_change_percentage_7d_in_currency.toFixed(2)}%`;
+    percentChangeEl.className = coin.price_change_percentage_7d_in_currency >= 0 ? 'change-positive' : 'change-negative';
+    percentChange24hEl.textContent = `${coin.price_change_percentage_24h.toFixed(2)}%`;
+    percentChange24hEl.className = coin.price_change_percentage_24h >= 0 ? 'change-positive' : 'change-negative';
+    highLowEl.textContent = `${coin.high_24h.toLocaleString('pt-BR', { minimumFractionDigits: 2 })} / $${coin.low_24h.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+    volumeEl.textContent = `${formatNumberCompact(coin.total_volume)}`;
+
+  } catch (error) {
+    console.error('Erro ao carregar dashboard', error.message);
+    nameEl.textContent = 'Dados indisponíveis';
+    priceEl.textContent = '--';
+    percentChangeEl.textContent = '--';
+    percentChange24hEl.textContent = '--';
+    highLowEl.textContent = '--';
+    volumeEl.textContent = '--';
+  }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   carregarDashboard();
@@ -507,4 +543,6 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Selecionada moeda B:', coinId)
   });
   renderChartCompare(coinA, coinB, appState.days, appState.currency);
+  renderDetailsCompare(coinA, 'coinA', appState.days, appState.currency);
+  renderDetailsCompare(coinB, 'coinB', appState.days, appState.currency);
 });
