@@ -401,7 +401,7 @@ img {
 .compare-controls {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
 .compare-controls input {
@@ -437,7 +437,9 @@ button#compareBtn:hover {
     background: #111;
     border-radius: 12px;
     padding: 16px;
-    min-height: 140px;
+    min-height: 300px;
+    min-width: 400px;
+    text-align: center;
 }
 
 .coin-card h3 {
