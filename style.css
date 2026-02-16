@@ -227,10 +227,37 @@ h3 {
     flex-grow: 1;
 }
 
-#news-list li {
+.container-news li {
     list-style: none;
     margin-bottom: 10px;
     cursor: pointer;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 3px solid #f7931a;
+    transition: 0.3s ease;
+    padding: 7px;
+}
+
+.container-news li:hover {
+    transform: translateX(4px);
+     background: rgba(255, 255, 255, 0.05);
+}
+
+section#news-view {
+    padding: 33px;
+    gap: 40px;
+}
+
+#news-view h3 {
+    font-weight: 700;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+#news-view ul {
+    max-height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .news-link {
@@ -242,7 +269,7 @@ h3 {
     text-decoration: underline;
 }
 
-#news-list span {
+.container-news span {
     font-size: 0.85rem;
     color: var(--text-secondary);
 }
@@ -285,12 +312,12 @@ h3 {
 }
 
 @supports (scrollbar-width: thin) {
-    .highlights-list {
+    .highlights-list, #news-view ul {
         scrollbar-width: none;
         scrollbar-color: transparent transparent;
     }
 
-    .highlights-list:hover {
+    .highlights-list:hover, #news-view ul:hover {
         scrollbar-width: thin;
         scrollbar-color: #4b5563 transparent;
     }
@@ -396,12 +423,14 @@ img {
 
 .compare-page {
     padding: 20px;
+    text-align: center;
 }
 
 .compare-controls {
     display: flex;
     gap: 10px;
     margin: 20px 0;
+    justify-content: center;
 }
 
 .compare-controls input {
