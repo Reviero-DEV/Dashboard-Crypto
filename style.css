@@ -20,6 +20,13 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
+main {
+    display: grid;
+    padding: 0;
+    margin: 30px auto;
+    height: 100%;
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -119,6 +126,9 @@ select {
     padding: 10px;
     border-right: 1px solid #2d2f36;
     transition: width 0.3s ease;
+    position: relative;
+    z-index: 3;
+    /* height: 100%; */
 }
 
 .sidebar.collapsed {
@@ -164,10 +174,22 @@ li.search-result-item:hover,
     cursor: pointer;
 }
 
+section#home-view {
+    grid-template-columns: auto auto auto;
+    height: 100%;
 
+}
 
-section {
+section, .live-market-main {
+    display: flex;
+    flex: 1;
     padding: 33px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.live-market-main {
+    padding: 0;
 }
 
 .mda-details {
@@ -197,7 +219,7 @@ section {
     padding: 20px;
     border-radius: 20px;
     border: 1px solid #2d2f36;
-    margin-bottom: 20px;
+    max-height: 370px;
 }
 
 #coin-name,
@@ -254,12 +276,6 @@ section#news-view {
     margin-bottom: 10px;
 }
 
-#news-view ul {
-    max-height: 400px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-
 .news-link {
     text-decoration: none;
     color: inherit;
@@ -305,19 +321,20 @@ section#news-view {
     align-items: flex-end;
 }
 
-.highlights-list {
+.highlights-list, #news-list, .livers-market, .container-news {
     max-height: 300px;
     overflow-y: auto;
+    overflow-x: hidden;
     scroll-behavior: smooth;
 }
 
 @supports (scrollbar-width: thin) {
-    .highlights-list, #news-view ul {
+    .highlights-list, #news-list, .livers-market, .container-news {
         scrollbar-width: none;
         scrollbar-color: transparent transparent;
     }
 
-    .highlights-list:hover, #news-view ul:hover {
+    .highlights-list:hover, #news-list:hover, .livers-market:hover, .container-news:hover {
         scrollbar-width: thin;
         scrollbar-color: #4b5563 transparent;
     }
@@ -326,7 +343,6 @@ section#news-view {
 .update-info {
     font-size: 0.75rem;
     color: var(--text-secondary);
-    margin-bottom: 15px;
 }
 
 img {
@@ -377,7 +393,7 @@ img {
     justify-content: space-evenly;
     padding-top: 15px;
     gap: 20px;
-    border-top: 1px solid #2d2f36;
+    border-bottom: 1px solid #2d2f36;
 }
 
 .detail-item {
@@ -401,7 +417,8 @@ img {
 
 .market-iframe {
     width: 100%;
-    height: 100%;
+    height: 255px;
+    margin-top: 45px;
     border: none;
     border-radius: 20px;
     overflow: hidden;
@@ -412,9 +429,12 @@ img {
 }
 
 .active-view {
-    display: flex;
+    display: grid;
+    background: repeating-linear-gradient(151deg, #1a1c2f7a, #0d0d1869 100px);
+    border-radius: 20px;
     padding: 0;
     width: 100%;
+    justify-content: center;
 }
 
 .sidebar button.active-btn {
