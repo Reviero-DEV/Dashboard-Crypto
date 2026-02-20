@@ -26,12 +26,6 @@
         <ul id="searchResults"></ul>
       </div>
 
-      <div class="alerts">
-        <button aria-label="alertas" class="icon-alerts">
-          <i class="fa-solid fa-bell"></i>
-        </button>
-        <span id="qty-alerts"></span>
-      </div>
       <div class="date-selector">
         <select aria-label="Seletor de data" id="filter-date">
           <option value="ult-7d">Ultimos 7 dias</option>
@@ -67,18 +61,6 @@
                 <span class="menu-text">Comparar</span>
               </button>
             </li>
-            <li class="icon-side">
-              <button type="button" data-view="alerts-view">
-                <i class="fa-solid fa-bell"></i>
-                <span class="menu-text">Alertas</span>
-              </button>
-            </li>
-            <li class="icon-side">
-              <button type="button" data-view="settings-view">
-                <i class="fa-solid fa-cog"></i>
-                <span class="menu-text">Configurações</span>
-              </button>
-            </li>
           </ul>
         </nav>
       </aside>
@@ -87,6 +69,11 @@
           <section class="top-livers">
             <div class="overview">
               <h3 id="overview-title">Panorama do Mercado</h3>
+              <div class="price-area">
+                <p class="main-price" id="marketGlobalPrice"></p>
+                <span class="change-positive" id="marketCapChange">+ 2.31%</span>
+              </div>
+
               <iframe
                 src="widgets/tradingViewMarket.html"
                 class="market-iframe"
@@ -207,12 +194,10 @@
               <button id="compareBtn">Comparar</button>
             </div>
             <div class="compare-cards">
-              <div class="coin-card" id="coinA">
+              <div class="card" id="coinA">
                 <h3 id="name-coinA">Moeda 1</h3>
                 <small>Preço Atual:</small>
                 <p class="price" id="price-coinA"></p>
-                <!-- <p class="change" id="change-coinA"></p> -->
-                <!-- <p class="marketcap" id="marketcap-coinA"></p> -->
                 <small>Porcentual de 7 dias:</small>
                 <p class="percentChange" id="percentChange-coinA"></p>
                 <small>Porcentual em 24h:</small>
@@ -223,12 +208,10 @@
                 <p class="volume" id="volume-coinA"></p>
 
               </div>
-              <div class="coin-card" id="coinB">
+              <div class="card" id="coinB">
                 <h3 id="name-coinB">Moeda 2</h3>
                 <small>Preço Atual:</small>
                 <p class="price" id="price-coinB"></p>
-                <!-- <p class="change" id="change-coinB"></p> -->
-                <!-- <p class="marketcap" id="marketcap-coinB"></p> -->
                 <small>Porcentual de 7 dias:</small>
                 <p class="percentChange" id="percentChange-coinB"></p>
                  <small>Porcentual em 24h:</small>
@@ -239,13 +222,11 @@
                 <p class="volume" id="volume-coinB"></p>
               </div>
             </div>
-            <div class="chartCompare-grid">
+            <div class="card">
               <canvas id="compareChart"></canvas>
             </div>
           </section>
         </section>
-        <section id="alerts-view" class="hidden"></section>
-        <section id="settings-view" class="hidden"></section>
       </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
