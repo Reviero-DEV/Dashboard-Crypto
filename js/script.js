@@ -220,7 +220,7 @@ function createNewsItem(item) {
     <a href="${item.link}" class="news-link">
     <p class="news-title">${item.title}</p>
     <span class="news-meta">
-    ${item.source} - ${new Date(item.date).toLocaleDateString('pt-BR')}
+    ${item.author} - ${new Date(item.pubDate).toLocaleDateString('pt-BR')}
     </span>
     </a>
     </li>
@@ -240,12 +240,13 @@ async function renderNews() {
   const news = await marketNews();
   
   const hoje = new Date().toISOString().split('T')[0];
-  const noticiasHoje = news.filter(n => n.date.startsWith(hoje));
-  const noticiasSemana = news.filter(n => !n.date.startsWith(hoje));
-  highlightsNews.innerHTML = news.slice(0,7).map(createNewsItem).join('');
-  newsToday.innerHTML = noticiasHoje.map(createNewsItem).join('');
-  newsLatest.innerHTML = noticiasSemana.map(createNewsItem).join('');
-
+  const noticiasHoje = news.filter(n => n.pubDate.startsWith(hoje));
+  const noticiasSemana = news.filter(n => !n.pubDate.startsWith(hoje));
+  highlightsNews.innerHTML = news.slice(0,10).map(createNewsItem).join('');
+  newsToday.innerHTML = noticiasHoje.slice(0,10).map(createNewsItem).join('');
+  newsLatest.innerHTML = noticiasSemana.slice(0,10).map(createNewsItem).join('');
+  console.log(`temos ${noticiasHoje.length} noticias de hoje`);
+  console.log(`temos ${noticiasSemana.length} noticias da semana`);
 }
 
 function initSearch() {

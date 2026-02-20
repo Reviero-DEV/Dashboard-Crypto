@@ -76,188 +76,213 @@ export async function overviewMarket() {
 }
 
 export async function marketNews() {
-    return [
-        {
-            title: 'Bitcoin mantem consolidação acima de $30.000',
-            link: '#',
-            date: new Date().toISOString(),
-            source: 'Crypto News'
-        },
-        {
-            title: 'Ethereum 2.0: O que esperar da atualização',
-            link: '#',
-            date: new Date().toISOString(),
-            source: 'Blockchain Today'
-        },
-        {
-            title: 'Altcoins ganham força no mercado em alta',
-            link: '#',
-            date: new Date().toISOString(),
-            source: 'Altcoin Daily'
-        },
-        {
-            title: 'Análise técnica: Principais níveis de suporte e resistência',
-            link: '#',
-            date: new Date().toISOString(),
-            source: 'Crypto Analysis'
-        },
-        {
-            title: 'Regulamentação cripto: Impactos no mercado global',
-            link: '#',
-            date: new Date().toISOString(),
-            source: 'Finance Today'
-        },
-        {
-            title: 'NFTs continuam a revolucionar o mercado digital',
-            link: '#',
-            date: new Date().toISOString(),
-            source: 'Digital Art News'
-        },
-        {
-            title: 'DeFi: O futuro das finanças descentralizadas',
-            link: '#',
-            date: new Date().toISOString(),
-            source: 'DeFi Weekly'
-        },
-        {
-            title: 'Ethereum 3.0: Comunidade aprova nova fase de escalabilidade para março',
-            link: '#',
-            date: new Date().toISOString(),
-            source: 'Tech Radar'
-        },
-        {
-            title: 'Solana ultrapassa volume diário do Ethereum em mercados NFT',
-            link: '#',
-            date: new Date().toISOString(),
-            source: 'Solana Daily'
-        },
-        {
-            title: 'Banco Central do Brasil anuncia novos testes com contratos inteligentes no DREX',
-            link: '#',
-            date: new Date().toISOString(),
-            source: 'Valor Econômico'
-        },
-        {
-            title: 'Bitcoin rompe resistência histórica e busca novos alvos em $125.000',
-            link: '#',
-            date: new Date().toISOString(),
-            source: 'Crypto News'
-        },
-        {
-            title: 'Ethereum registra queda nas taxas de gás após implementação de novo EIP',
-            link: '#',
-            date: new Date().toISOString(),
-            source: 'Ether World'
-        },
-        {
-            title: 'Solana lança Saga Phone 3 com foco em IA e pagamentos nativos',
-            link: '#',
-            date: new Date().toISOString(),
-            source: 'Solana Daily'
-        },
-        {
-            title: 'Ripple (XRP) vence última etapa judicial e expande operações na Ásia',
-            link: '#',
-            date: new Date().toISOString(),
-            source: 'Finance Magnates'
-        },
-        {
-            title: 'CVM brasileira aprova novo ETF focado em Real World Assets (RWA)',
-            link: '#',
-            date: new Date().toISOString(),
-            source: 'Valor Econômico'
-        },
-        // --------------//
-        {
-            title: 'Regulação Cripto: G20 estabelece padrões globais para stablecoins',
-            link: '#',
-            date: new Date(Date.now() - (3 * 24 * 60 * 60 * 1000)).toISOString(),
-            source: 'Reuters'
-        },
-        {
-            title: 'Chainlink integra sistemas de pagamento Swift para ativos tokenizados',
-            link: '#',
-            date: new Date(Date.now() - (26 * 60 * 60 * 1000)).toISOString(),
-            source: 'Blockchain Insider'
-        },
-        {
-            title: 'Nvidia lança chips otimizados para mineração sustentável de ZK-Proofs',
-            link: '#',
-            date: new Date(Date.now() - (3 * 24 * 60 * 60 * 1000)).toISOString(),
-            source: 'Hardware Zone'
-        },
-        {
-            title: 'Adoção de Lightning Network cresce 300% em pagamentos de varejo na América Latina',
-            link: '#',
-            date: new Date(Date.now() - (2 * 24 * 60 * 60 * 1000)).toISOString(),
-            source: 'Crypto Economy'
-        },
-        {
-            title: 'Hacker devolve $40 milhões após falha em protocolo de empréstimo DeFi',
-            link: '#',
-            date: new Date(Date.now() - (3 * 24 * 60 * 60 * 1000)).toISOString(),
-            source: 'Security Watch'
-        },
-        {
-            title: 'Cardano finaliza transição para governança 100% on-chain',
-            link: '#',
-            date: new Date(Date.now() - (2 * 24 * 60 * 60 * 1000)).toISOString(),
-            source: 'Cardano Feed'
-        },
-        {
-            title: 'Tokens de Real World Assets (RWA) atingem capitalização recorde',
-            link: '#',
-            date: new Date(Date.now() - (26 * 60 * 60 * 1000)).toISOString(),
-            source: 'Forbes'
-        },
-        {
-            title: 'Polkadot 2.0: Nova arquitetura de leilões reduz custos para desenvolvedores',
-            link: '#',
-            date: new Date(Date.now() - (3 * 24 * 60 * 60 * 1000)).toISOString(),
-            source: 'Dot News'
-        },
-        {
-            title: 'Regulação Cripto: G20 estabelece padrões globais para stablecoins',
-            link: '#',
-            date: new Date(Date.now() - (26 * 60 * 60 * 1000)).toISOString(),
-            source: 'Reuters'
-        },
-        {
-            title: 'Chainlink integra sistemas de pagamento Swift para ativos tokenizados',
-            link: '#',
-            date: new Date(Date.now() - (2 * 24 * 60 * 60 * 1000)).toISOString(),
-            source: 'Blockchain Insider'
-        },
-        {
-            title: 'Nvidia lança chips otimizados para mineração sustentável de ZK-Proofs',
-            link: '#',
-            date: new Date(Date.now() - (3 * 24 * 60 * 60 * 1000)).toISOString(),
-            source: 'Hardware Zone'
-        },
-        {
-            title: 'Adoção de Lightning Network cresce 300% em pagamentos no varejo',
-            link: '#',
-            date: new Date(Date.now() - (4 * 24 * 60 * 60 * 1000)).toISOString(),
-            source: 'Crypto Economy'
-        },
-        {
-            title: 'Hacker devolve $40 milhões após falha em protocolo DeFi',
-            link: '#',
-            date: new Date(Date.now() - (5 * 24 * 60 * 60 * 1000)).toISOString(),
-            source: 'Security Watch'
-        },
-        {
-            title: 'Cardano finaliza transição para governança 100% on-chain',
-            link: '#',
-            date: new Date(Date.now() - (6 * 24 * 60 * 60 * 1000)).toISOString(),
-            source: 'Cardano Feed'
-        },
-        {
-            title: 'Tokens de Real World Assets (RWA) atingem capitalização recorde',
-            link: '#',
-            date: new Date(Date.now() - (7 * 24 * 60 * 60 * 1000)).toISOString(),
-            source: 'Forbes'
-        }
-    ]
+    try {
 
+        const [res1, res2] = await Promise.all([
+            fetch('https://api.rss2json.com/v1/api.json?rss_url=https://portaldobitcoin.uol.com.br/feed/'),
+            fetch('https://api.rss2json.com/v1/api.json?rss_url=https://livecoins.com.br/feed/')
+        ]);
+
+        if (!res1.ok || !res2.ok) {
+            throw new Error('Erro ao buscar feeds');
+        }
+
+        const [feed1, feed2] = await Promise.all([
+            res1.json(),
+            res2.json()
+        ]);
+        console.log(feed1.items);
+        console.log(feed2.items);
+        const allNews = [...feed1.items, ...feed2.items];
+
+        return allNews;
+    } catch (error) {
+        console.error('Erro ao carregar news destaques', error.message);
+        return {
+            status: 'fallback',
+            items: [
+                {
+                    title: 'Bitcoin mantem consolidação acima de $30.000',
+                    link: '#',
+                    pubDate: new Date().toISOString(),
+                    author: 'Crypto News'
+                },
+                {
+                    title: 'Ethereum 2.0: O que esperar da atualização',
+                    link: '#',
+                    pubDate: new Date().toISOString(),
+                    author: 'Blockchain Today'
+                },
+                {
+                    title: 'Altcoins ganham força no mercado em alta',
+                    link: '#',
+                    pubDate: new Date().toISOString(),
+                    author: 'Altcoin Daily'
+                },
+                {
+                    title: 'Análise técnica: Principais níveis de suporte e resistência',
+                    link: '#',
+                    pubDate: new Date().toISOString(),
+                    author: 'Crypto Analysis'
+                },
+                {
+                    title: 'Regulamentação cripto: Impactos no mercado global',
+                    link: '#',
+                    pubDate: new Date().toISOString(),
+                    author: 'Finance Today'
+                },
+                {
+                    title: 'NFTs continuam a revolucionar o mercado digital',
+                    link: '#',
+                    pubDate: new Date().toISOString(),
+                    author: 'Digital Art News'
+                },
+                {
+                    title: 'DeFi: O futuro das finanças descentralizadas',
+                    link: '#',
+                    pubDate: new Date().toISOString(),
+                    author: 'DeFi Weekly'
+                },
+                {
+                    title: 'Ethereum 3.0: Comunidade aprova nova fase de escalabilidade para março',
+                    link: '#',
+                    pubDate: new Date().toISOString(),
+                    author: 'Tech Radar'
+                },
+                {
+                    title: 'Solana ultrapassa volume diário do Ethereum em mercados NFT',
+                    link: '#',
+                    pubDate: new Date().toISOString(),
+                    author: 'Solana Daily'
+                },
+                {
+                    title: 'Banco Central do Brasil anuncia novos testes com contratos inteligentes no DREX',
+                    link: '#',
+                    pubDate: new Date().toISOString(),
+                    author: 'Valor Econômico'
+                },
+                {
+                    title: 'Bitcoin rompe resistência histórica e busca novos alvos em $125.000',
+                    link: '#',
+                    pubDate: new Date().toISOString(),
+                    author: 'Crypto News'
+                },
+                {
+                    title: 'Ethereum registra queda nas taxas de gás após implementação de novo EIP',
+                    link: '#',
+                    pubDate: new Date().toISOString(),
+                    author: 'Ether World'
+                },
+                {
+                    title: 'Solana lança Saga Phone 3 com foco em IA e pagamentos nativos',
+                    link: '#',
+                    pubDate: new Date().toISOString(),
+                    author: 'Solana Daily'
+                },
+                {
+                    title: 'Ripple (XRP) vence última etapa judicial e expande operações na Ásia',
+                    link: '#',
+                    pubDate: new Date().toISOString(),
+                    author: 'Finance Magnates'
+                },
+                {
+                    title: 'CVM brasileira aprova novo ETF focado em Real World Assets (RWA)',
+                    link: '#',
+                    pubDate: new Date().toISOString(),
+                    author: 'Valor Econômico'
+                },
+                // --------------//
+                {
+                    title: 'Regulação Cripto: G20 estabelece padrões globais para stablecoins',
+                    link: '#',
+                    pubDate: new Date(Date.now() - (3 * 24 * 60 * 60 * 1000)).toISOString(),
+                    author: 'Reuters'
+                },
+                {
+                    title: 'Chainlink integra sistemas de pagamento Swift para ativos tokenizados',
+                    link: '#',
+                    pubDate: new Date(Date.now() - (26 * 60 * 60 * 1000)).toISOString(),
+                    author: 'Blockchain Insider'
+                },
+                {
+                    title: 'Nvidia lança chips otimizados para mineração sustentável de ZK-Proofs',
+                    link: '#',
+                    pubDate: new Date(Date.now() - (3 * 24 * 60 * 60 * 1000)).toISOString(),
+                    author: 'Hardware Zone'
+                },
+                {
+                    title: 'Adoção de Lightning Network cresce 300% em pagamentos de varejo na América Latina',
+                    link: '#',
+                    pubDate: new Date(Date.now() - (2 * 24 * 60 * 60 * 1000)).toISOString(),
+                    author: 'Crypto Economy'
+                },
+                {
+                    title: 'Hacker devolve $40 milhões após falha em protocolo de empréstimo DeFi',
+                    link: '#',
+                    pubDate: new Date(Date.now() - (3 * 24 * 60 * 60 * 1000)).toISOString(),
+                    author: 'Security Watch'
+                },
+                {
+                    title: 'Cardano finaliza transição para governança 100% on-chain',
+                    link: '#',
+                    pubDate: new Date(Date.now() - (2 * 24 * 60 * 60 * 1000)).toISOString(),
+                    author: 'Cardano Feed'
+                },
+                {
+                    title: 'Tokens de Real World Assets (RWA) atingem capitalização recorde',
+                    link: '#',
+                    pubDate: new Date(Date.now() - (26 * 60 * 60 * 1000)).toISOString(),
+                    author: 'Forbes'
+                },
+                {
+                    title: 'Polkadot 2.0: Nova arquitetura de leilões reduz custos para desenvolvedores',
+                    link: '#',
+                    pubDate: new Date(Date.now() - (3 * 24 * 60 * 60 * 1000)).toISOString(),
+                    author: 'Dot News'
+                },
+                {
+                    title: 'Regulação Cripto: G20 estabelece padrões globais para stablecoins',
+                    link: '#',
+                    pubDate: new Date(Date.now() - (26 * 60 * 60 * 1000)).toISOString(),
+                    author: 'Reuters'
+                },
+                {
+                    title: 'Chainlink integra sistemas de pagamento Swift para ativos tokenizados',
+                    link: '#',
+                    pubDate: new Date(Date.now() - (2 * 24 * 60 * 60 * 1000)).toISOString(),
+                    author: 'Blockchain Insider'
+                },
+                {
+                    title: 'Nvidia lança chips otimizados para mineração sustentável de ZK-Proofs',
+                    link: '#',
+                    pubDate: new Date(Date.now() - (3 * 24 * 60 * 60 * 1000)).toISOString(),
+                    author: 'Hardware Zone'
+                },
+                {
+                    title: 'Adoção de Lightning Network cresce 300% em pagamentos no varejo',
+                    link: '#',
+                    pubDate: new Date(Date.now() - (4 * 24 * 60 * 60 * 1000)).toISOString(),
+                    author: 'Crypto Economy'
+                },
+                {
+                    title: 'Hacker devolve $40 milhões após falha em protocolo DeFi',
+                    link: '#',
+                    pubDate: new Date(Date.now() - (5 * 24 * 60 * 60 * 1000)).toISOString(),
+                    author: 'Security Watch'
+                },
+                {
+                    title: 'Cardano finaliza transição para governança 100% on-chain',
+                    link: '#',
+                    pubDate: new Date(Date.now() - (6 * 24 * 60 * 60 * 1000)).toISOString(),
+                    author: 'Cardano Feed'
+                },
+                {
+                    title: 'Tokens de Real World Assets (RWA) atingem capitalização recorde',
+                    link: '#',
+                    pubDate: new Date(Date.now() - (7 * 24 * 60 * 60 * 1000)).toISOString(),
+                    author: 'Forbes'
+                }
+            ]
+        };
+    }
 }
