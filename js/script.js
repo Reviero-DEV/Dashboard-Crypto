@@ -26,12 +26,12 @@ let cacheCoins = [];
 
 async function savedCoinsCache() {
   try {
-  if (cacheCoins.length === 0) {
-    cacheCoins = await getTopCoins();
-  }
-  return cacheCoins;
-  } catch(error) {
-     console.error('Erro ao carregar moedas', error.message);
+    if (cacheCoins.length === 0) {
+      cacheCoins = await getTopCoins();
+    }
+    return cacheCoins;
+  } catch (error) {
+    console.error('Erro ao carregar moedas', error.message);
   }
 }
 
@@ -527,7 +527,6 @@ async function renderChartCompare(coinA, coinB, days = 30, currency = 'usd') {
   } catch (error) {
     console.error('Erro ao renderizar gráfico de comparacao:', error.message);
   }
-  // console.log(window.Chart)
 }
 
 async function renderDetailsCompare(coinId, prefix, days = 30, currency = 'usd') {
@@ -539,7 +538,7 @@ async function renderDetailsCompare(coinId, prefix, days = 30, currency = 'usd')
   const volumeEl = document.getElementById(`volume-${prefix}`);
 
   try {
-    const data = await getTopCoins(days, currency);
+    const data = await savedCoinsCache();
     const coin = data.find(d => d.id === coinId);
 
     nameEl.textContent = coin.name;
@@ -574,11 +573,14 @@ document.addEventListener('DOMContentLoaded', () => {
   renderNews();
   searchCompare('coinAInput', 'searchResults-coinA', (coinId) => {
     coinA = coinId;
-    console.log('Selecionada moeda A:', coinId)
+    renderDetailsCompare(coinA, 'coinA');
+    renderChartCompare(coinA, coinB, appState.days, appState.currency);
   });
+
   searchCompare('coinBInput', 'searchResults-coinB', (coinId) => {
     coinB = coinId;
-    console.log('Selecionada moeda B:', coinId)
+    renderChartCompare(coinA, coinB, appState.days, appState.currency);
+    renderDetailsCompare(coinB, 'coinB');
   });
   renderChartCompare(coinA, coinB, appState.days, appState.currency);
   renderDetailsCompare(coinA, 'coinA', appState.days, appState.currency);
