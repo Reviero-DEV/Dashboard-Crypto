@@ -65,7 +65,8 @@ header {
     width: 100%;
 }
 
-#searchResults, .compare-searchResults {
+#searchResults,
+.compare-searchResults {
     display: none;
     position: absolute;
     background: #71666682;
@@ -76,7 +77,8 @@ header {
     flex-direction: column;
 }
 
-li.search-result-item, .compare-searchResults li {
+li.search-result-item,
+.compare-searchResults li {
     display: flex;
     align-items: center;
     gap: 7px;
@@ -175,12 +177,12 @@ li.search-result-item:hover,
 }
 
 section#home-view {
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 450px auto auto;
     height: 100%;
-
 }
 
-section, .live-market-main {
+section,
+.live-market-main {
     display: flex;
     flex: 1;
     padding: 33px;
@@ -195,7 +197,7 @@ section, .live-market-main {
 .mda-details {
     border: 1px solid #ffffff1a;
     border-top: none;
-    flex: 1;
+    /* flex: 1; */
 }
 
 .card-header {
@@ -214,6 +216,11 @@ section, .live-market-main {
     font-size: xx-small;
 }
 
+.chart-placeholderw.card {
+    margin: 8px 0 11px 0;
+    height: 240px;
+}
+
 .card {
     background: var(--bg-card);
     padding: 20px;
@@ -224,7 +231,7 @@ section, .live-market-main {
 
 #coin-name,
 #overview-title {
-    display: flex;
+    /* display: flex; */
     font-size: 1.7rem;
     align-items: center;
     margin-bottom: 10px;
@@ -262,7 +269,7 @@ h3 {
 
 .container-news li:hover {
     transform: translateX(4px);
-     background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 section#news-view {
@@ -301,6 +308,7 @@ section#news-view {
     border-bottom: 1px solid #2d2f36;
     font-size: 0.9rem;
     color: var(--text-primary);
+    transition: 0.3s ease;
 }
 
 .highlight-item {
@@ -321,20 +329,38 @@ section#news-view {
     align-items: flex-end;
 }
 
-.highlights-list, #news-list, .livers-market, .container-news {
+.highlights-list,
+#news-list,
+.livers-market,
+.container-news {
     max-height: 300px;
     overflow-y: auto;
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
 
+.coin-select:hover {
+    transform: translateX(4px);
+    background: linear-gradient(91deg, transparent, #37271085);
+    color: var(--accent);
+    cursor: pointer;
+    border-radius: 10px;
+}
+
 @supports (scrollbar-width: thin) {
-    .highlights-list, #news-list, .livers-market, .container-news {
+
+    .highlights-list,
+    #news-list,
+    .livers-market,
+    .container-news {
         scrollbar-width: none;
         scrollbar-color: transparent transparent;
     }
 
-    .highlights-list:hover, #news-list:hover, .livers-market:hover, .container-news:hover {
+    .highlights-list:hover,
+    #news-list:hover,
+    .livers-market:hover,
+    .container-news:hover {
         scrollbar-width: thin;
         scrollbar-color: #4b5563 transparent;
     }
@@ -354,13 +380,13 @@ img {
 .main-price {
     font-size: 2.2rem;
     font-weight: bold;
-    margin: 10px 0;
+    margin-top: 10px;
 }
 
 .change-positive {
     color: var(--positive);
     background: rgba(0, 200, 83, 0);
-    padding: 4px 8px;
+    /* padding: 4px 8px; */
     border-radius: 8px;
     height: fit-content;
     font-size: 0.8rem;
@@ -369,7 +395,7 @@ img {
 
 .change-negative {
     color: var(--negative);
-    padding: 4px 8px;
+    /* padding: 4px 8px; */
     border-radius: 6px;
     font-size: 0.8rem;
     font-weight: bold;
@@ -391,7 +417,7 @@ img {
 .price-details {
     display: flex;
     justify-content: space-evenly;
-    padding-top: 15px;
+    /* padding-top: 15px; */
     gap: 20px;
     border-bottom: 1px solid #2d2f36;
 }
@@ -406,7 +432,7 @@ img {
     gap: 5px;
     font-size: 0.8rem;
     text-align: center;
-    padding: 10px;
+    padding: 7px;
     margin-bottom: 20px;
 }
 
@@ -418,7 +444,7 @@ img {
 .market-iframe {
     width: 100%;
     height: 255px;
-    margin-top: 45px;
+    /* margin-top: 45px; */
     border: none;
     border-radius: 20px;
     overflow: hidden;
@@ -455,8 +481,10 @@ img {
 
 .compare-controls input {
     padding: 10px;
+    background: scroll;
+    color: #cad3db;
     border-radius: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc7d;
     flex: 1;
 }
 
