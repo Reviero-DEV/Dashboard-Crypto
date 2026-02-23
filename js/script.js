@@ -22,7 +22,21 @@ const appState = {
   currency: 'usd'
 }
 
-async function carregarDashboard() {
+let cacheCoins = [];
+
+async function savedCoinsCache() {
+  try {
+  if (cacheCoins.length === 0) {
+    cacheCoins = await getTopCoins();
+  }
+  return cacheCoins;
+  } catch(error) {
+     console.error('Erro ao carregar moedas', error.message);
+  }
+}
+
+
+async function carregarDashboard(coinId = appState.coin) {
   const nameEl = document.getElementById('coin-name');
   const priceEl = document.getElementById('coin-price');
   const percentChangeEl = document.getElementById('percentChange');
@@ -39,23 +53,21 @@ async function carregarDashboard() {
   volumeEl.textContent = '--';
 
   try {
-    const coins = await getTopCoins();
-    if (!coins || coins.length === 0) {
-      throw new Error('Lista vazia');
-    }
+    const coins = await savedCoinsCache();
+    const coin = coins.find(c => c.id === coinId);
+    if (!coin) throw new Error('Nao encontrado');
 
-    const btc = coins[0];
-    nameEl.textContent = btc.name;
-    priceEl.textContent = btc.current_price.toLocaleString('pt-BR', {
+    nameEl.textContent = coin.name;
+    priceEl.textContent = coin.current_price.toLocaleString('pt-BR', {
       style: 'currency',
-      currency: 'USD'
+      currency: appState.currency.toUpperCase()
     });
-    percentChangeEl.textContent = `${btc.price_change_percentage_7d_in_currency.toFixed(2)}%`;
-    percentChangeEl.className = btc.price_change_percentage_7d_in_currency >= 0 ? 'change-positive' : 'change-negative';
-    percentChange24hEl.textContent = `${btc.price_change_percentage_24h.toFixed(2)}%`;
-    percentChange24hEl.className = btc.price_change_percentage_24h >= 0 ? 'change-positive' : 'change-negative';
-    highLowEl.textContent = `${btc.high_24h.toLocaleString('pt-BR', { minimumFractionDigits: 2 })} / $${btc.low_24h.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
-    volumeEl.textContent = formatNumberCompact(btc.total_volume);
+    percentChangeEl.textContent = `${coin.price_change_percentage_7d_in_currency.toFixed(2)}%`;
+    percentChangeEl.className = coin.price_change_percentage_7d_in_currency >= 0 ? 'change-positive' : 'change-negative';
+    percentChange24hEl.textContent = `${coin.price_change_percentage_24h.toFixed(2)}%`;
+    percentChange24hEl.className = coin.price_change_percentage_24h >= 0 ? 'change-positive' : 'change-negative';
+    highLowEl.textContent = `${coin.high_24h.toLocaleString('pt-BR', { minimumFractionDigits: 2 })} / $${coin.low_24h.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+    volumeEl.textContent = formatNumberCompact(coin.total_volume);
 
   } catch (error) {
     console.error('Erro ao carregar dashboard', error.message);
@@ -132,7 +144,7 @@ async function renderCardHighlights() {
   const listContainer = document.getElementById('highlights-list');
 
   listContainer.innerHTML = coins.map(coin => `
-        <li class="highlight-item">
+        <li class="highlight-item coin-select" data-id="${coin.id}">
             <div class="highlight-item-content">
                 <img src="${coin.image}" width="30" class="me-2" alt="${coin.name}">
                 <span><strong>${coin.name}</strong> <small class="text-muted">${coin.symbol.toUpperCase()}</small></span>
@@ -145,6 +157,14 @@ async function renderCardHighlights() {
             </div>
         </li>
     `).join('');
+
+  listContainer.addEventListener('click', (e) => {
+    const li = e.target.closest('.coin-select');
+    if (!li) return;
+    const coinIdH = li.dataset.id;
+    carregarDashboard(coinIdH);
+    renderChart(coinIdH, appState.days, appState.currency);
+  });
 }
 
 async function renderTopMovers() {
@@ -155,7 +175,7 @@ async function renderTopMovers() {
   const losersContainer = document.getElementById('top-losers');
 
   gainersContainer.innerHTML = gainers.map(coin => `
-    <li class="top-mover-item highlight-item">
+    <li class="top-mover-item highlight-item coin-select" data-id="${coin.id}">
       <div class="top-mover-content">
         <img src="${coin.image}" width="20" class="me-2" alt="${coin.name}">
         <span>${coin.name}</span>
@@ -166,10 +186,15 @@ async function renderTopMovers() {
     </li>
   `).join('');
 
-  // console.log(topGainers)
+  gainersContainer.addEventListener('click', (e) => {
+    const li = e.target.closest('.coin-select');
+    const coinIdHigh = li.dataset.id;
+    carregarDashboard(coinIdHigh);
+    renderChart(coinIdHigh, appState.days, appState.currency);
+  });
 
   losersContainer.innerHTML = losers.map(coin => `
-    <li class="top-mover-item highlight-item">
+    <li class="top-mover-item highlight-item coin-select" data-id="${coin.id}">
       <div class="top-mover-content">
         <img src="${coin.image}" width="20" class="me-2" alt="${coin.name}">
         <span>${coin.name}</span>
@@ -179,6 +204,13 @@ async function renderTopMovers() {
       </div>
     </li>
   `).join('');
+
+  losersContainer.addEventListener('click', (e) => {
+    const li = e.target.closest('.coin-select');
+    const coinIdLow = li.dataset.id;
+    carregarDashboard(coinIdLow);
+    renderChart(coinIdLow, appState.days, appState.currency);
+  });
 }
 
 async function renderMarketOverview() {
@@ -238,13 +270,13 @@ async function renderNews() {
   newsLatest.textContent = 'Carregando notícias...';
 
   const news = await marketNews();
-  
+
   const hoje = new Date().toISOString().split('T')[0];
   const noticiasHoje = news.filter(n => n.pubDate.startsWith(hoje));
   const noticiasSemana = news.filter(n => !n.pubDate.startsWith(hoje));
-  highlightsNews.innerHTML = news.slice(0,10).map(createNewsItem).join('');
-  newsToday.innerHTML = noticiasHoje.slice(0,10).map(createNewsItem).join('');
-  newsLatest.innerHTML = noticiasSemana.slice(0,10).map(createNewsItem).join('');
+  highlightsNews.innerHTML = news.slice(0, 10).map(createNewsItem).join('');
+  newsToday.innerHTML = noticiasHoje.slice(0, 10).map(createNewsItem).join('');
+  newsLatest.innerHTML = noticiasSemana.slice(0, 10).map(createNewsItem).join('');
   console.log(`temos ${noticiasHoje.length} noticias de hoje`);
   console.log(`temos ${noticiasSemana.length} noticias da semana`);
 }
@@ -280,7 +312,8 @@ function initSearch() {
     const item = e.target.closest('.search-result-item');
     if (!item) return;
     const coinId = item.dataset.id;
-    loadCoinData(coinId);
+    carregarDashboard(coinId);
+    renderChart(coinId, appState.days, appState.currency);
     searchResults.innerHTML = '';
     searchInput.value = '';
   });
@@ -310,16 +343,12 @@ async function loadFilterData() {
     'all-time': 'max'
   }
   appState.days = periodMap[selDate.value] || 30;
-  console.log('Carregando dados para o período:', selDate.value, appState.days);
-  console.log(renderChart(currentCoin, appState.days))
   renderChart(appState.coin, appState.days, appState.currency);
 
 }
 
 document.getElementById('filter-date').addEventListener('change', () => {
-  console.log('carregando filtro');
   loadFilterData();
-  console.log('filtro carregado');
 });
 
 async function loadFilterCurrency() {
@@ -332,14 +361,11 @@ async function loadFilterCurrency() {
     'BRL': 'brl'
   }
   appState.currency = currencyMap[selCurrency.value] || 'usd';
-  console.log('Carregando dados para a moeda:', selCurrency.value, appState.currency);
   renderChart(appState.coin, appState.days, appState.currency);
 }
 
 document.querySelector('.select-mda').addEventListener('change', () => {
-  console.log('carregando filtro de moeda');
   loadFilterCurrency();
-  console.log('filtro de moeda carregado');
 });
 
 
@@ -390,7 +416,6 @@ function searchCompare(inputId, resultsId, loadCoinData) {
     clearTimeout(debounceTimerComp);
     debounceTimerComp = setTimeout(async () => {
       const query = e.target.value.trim().toLowerCase();
-      console.log('Verificando busca de:', query, 'do input:', inputId, 'para o container:', resultsCont)
       if (!query) {
         resultsCont.innerHTML = '';
         resultsCont.style.display = 'none';
@@ -399,8 +424,6 @@ function searchCompare(inputId, resultsId, loadCoinData) {
 
       const results = await searchCoins(query);
       const topResults = results.slice(0, 8);
-
-      console.log(topResults);
       resultsCont.innerHTML = topResults.map(coin => `
         <li class="search-result-item" data-id="${coin.id}">
           <img src="${coin.image}" width="20" class="me-2" />
@@ -520,7 +543,6 @@ async function renderDetailsCompare(coinId, prefix, days = 30, currency = 'usd')
     const coin = data.find(d => d.id === coinId);
 
     nameEl.textContent = coin.name;
-    console.log(coin.name);
     priceEl.textContent = `${coin.current_price.toLocaleString('pt-BR', {
       style: 'currency',
       currency: currency.toUpperCase()
