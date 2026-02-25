@@ -326,7 +326,7 @@ function initSearch() {
 }
 
 async function searchCoins(query) {
-  return getTopCoins().then(coins =>
+  return savedCoinsCache().then(coins =>
     coins.filter(coin =>
       coin.name.toLowerCase().includes(query) ||
       coin.symbol.toLowerCase().includes(query)
