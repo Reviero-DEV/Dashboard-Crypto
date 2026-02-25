@@ -406,6 +406,10 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+document.getElementById('btnCompare').addEventListener('click', () => {
+renderChartCompare(coinA, coinB, appState.days, appState.currency);
+})
+
 function searchCompare(inputId, resultsId, loadCoinData) {
   const input = document.getElementById(inputId);
   const resultsCont = document.getElementById(resultsId);
@@ -442,9 +446,22 @@ function searchCompare(inputId, resultsId, loadCoinData) {
     loadCoinData(coinId);
     resultsCont.innerHTML = '';
     resultsCont.style.display = 'none';
-    input.value = '';
+    input.value = coinId;
   });
 }
+
+document.getElementById('compareBtn').addEventListener('click', (e) => {
+e.disabled = !coinA || !coinB || coinA === coinB;
+  if(!coinA || !coinB) {
+    alert('Selecione duas moedas');
+    return;
+  }
+  if(coinA === coinB) {
+    alert('Escolha moedas diferentes');
+    return;
+  }
+renderChartCompare(coinA, coinB, appState.days, appState.currency);
+})
 
 let compareChart = null;
 let coinA = 'bitcoin';
@@ -459,6 +476,7 @@ function formatPercentage(prices) {
 async function renderChartCompare(coinA, coinB, days = 30, currency = 'usd') {
   const canvasCompare = document.getElementById('compareChart');
   if (!canvasCompare) return;
+  canvasCompare.textContent = 'Carregando...';
   try {
     const chartDataA = await getCoinChart(coinA, days, currency);
     const chartDataB = await getCoinChart(coinB, days, currency);
@@ -571,18 +589,15 @@ document.addEventListener('DOMContentLoaded', () => {
   renderTopMovers();
   renderMarketOverview();
   renderNews();
+  
+  renderDetailsCompare(coinA, 'coinA', appState.days, appState.currency);
+  renderDetailsCompare(coinB, 'coinB', appState.days, appState.currency);
   searchCompare('coinAInput', 'searchResults-coinA', (coinId) => {
     coinA = coinId;
     renderDetailsCompare(coinA, 'coinA');
-    renderChartCompare(coinA, coinB, appState.days, appState.currency);
   });
-
   searchCompare('coinBInput', 'searchResults-coinB', (coinId) => {
     coinB = coinId;
-    renderChartCompare(coinA, coinB, appState.days, appState.currency);
     renderDetailsCompare(coinB, 'coinB');
   });
-  renderChartCompare(coinA, coinB, appState.days, appState.currency);
-  renderDetailsCompare(coinA, 'coinA', appState.days, appState.currency);
-  renderDetailsCompare(coinB, 'coinB', appState.days, appState.currency);
 });
