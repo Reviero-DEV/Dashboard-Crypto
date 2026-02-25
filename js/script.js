@@ -22,14 +22,14 @@ const appState = {
   currency: 'usd'
 }
 
-let cacheCoins = [];
+let cacheCoins = {};
 
-async function savedCoinsCache() {
+async function savedCoinsCache(currency) {
   try {
-    if (cacheCoins.length === 0) {
-      cacheCoins = await getTopCoins();
+    if (!cacheCoins[currency]) {
+      cacheCoins[currency] = await getTopCoins(currency);
     }
-    return cacheCoins;
+    return cacheCoins[currency];
   } catch (error) {
     console.error('Erro ao carregar moedas', error.message);
   }
