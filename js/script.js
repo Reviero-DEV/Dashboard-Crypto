@@ -1,4 +1,4 @@
-import { getTopCoins, getCoinChart, getCardHighlights, topGainers, topLosers, overviewMarket, marketNews } from './api/coingecko.js';
+import { getTopCoins, getCoinChart, getCardHighlights, topGainers, overviewMarket, marketNews } from './api/coingecko.js';
 
 function formatNumberCompact(value) {
   if (value == null) return '--';
@@ -168,8 +168,10 @@ async function renderCardHighlights() {
 }
 
 async function renderTopMovers() {
-  const gainers = await topGainers();
-  const losers = await topLosers();
+  const data =  await topGainers();
+  const gainers = [...data].filter(coins => coins.price_change_percentage_24h > 0).sort((a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h).slice(0, 7);
+  
+  const losers = [...data].filter(coins => coins.price_change_percentage_24h < 0).sort((a, b) => a.price_change_percentage_24h - b.price_change_percentage_24h).slice(0, 7);
 
   const gainersContainer = document.getElementById('top-gainers');
   const losersContainer = document.getElementById('top-losers');
