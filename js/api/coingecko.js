@@ -1,7 +1,7 @@
 const BASE_URL = ' https://api.coingecko.com/api/v3';
-export async function getTopCoins() {
+export async function getTopCoins(currency = 'usd') {
     const response = await fetch(
-        `${BASE_URL}/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page1&price_change_percentage=24h,7d`
+        `${BASE_URL}/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page1&price_change_percentage=24h,7d`
     );
     if (!response.ok) {
         throw new Error(`Erro ${response.status} ao buscar dados da API`);
@@ -28,7 +28,6 @@ export async function getTrending(coins = 7) {
     }
     const data = await response.json();
     return data.coins.map(c => c.item.id);
-
 }
 
 export async function getCardHighlights() {

@@ -36,7 +36,7 @@ async function savedCoinsCache(currency) {
 }
 
 
-async function carregarDashboard(coinId = appState.coin) {
+async function carregarDashboard(coinId = appState.coin, currency = appState.currency) {
   const nameEl = document.getElementById('coin-name');
   const priceEl = document.getElementById('coin-price');
   const percentChangeEl = document.getElementById('percentChange');
@@ -53,14 +53,14 @@ async function carregarDashboard(coinId = appState.coin) {
   volumeEl.textContent = '--';
 
   try {
-    const coins = await savedCoinsCache();
+    const coins = await savedCoinsCache(currency);
     const coin = coins.find(c => c.id === coinId);
     if (!coin) throw new Error('Nao encontrado');
 
     nameEl.textContent = coin.name;
     priceEl.textContent = coin.current_price.toLocaleString('pt-BR', {
       style: 'currency',
-      currency: appState.currency.toUpperCase()
+      currency: currency.toUpperCase()
     });
     percentChangeEl.textContent = `${coin.price_change_percentage_7d_in_currency.toFixed(2)}%`;
     percentChangeEl.className = coin.price_change_percentage_7d_in_currency >= 0 ? 'change-positive' : 'change-negative';
@@ -82,7 +82,7 @@ async function carregarDashboard(coinId = appState.coin) {
 
 let cryptoChart = null;
 
-async function renderChart(coinId, days = 30, currency = 'usd') {
+async function renderChart(coinId = appState.coin, days = appState.days, currency = appState.currency) {
   const canvas = document.getElementById('coinChart');
   if (!canvas) return;
 
@@ -162,8 +162,8 @@ async function renderCardHighlights() {
     const li = e.target.closest('.coin-select');
     if (!li) return;
     const coinIdH = li.dataset.id;
-    carregarDashboard(coinIdH);
-    renderChart(coinIdH, appState.days, appState.currency);
+    carregarDashboard(appState.coin = coinIdH);
+    renderChart(appState.coin = coinIdH, appState.days, appState.currency);
   });
 }
 
@@ -191,8 +191,8 @@ async function renderTopMovers() {
   gainersContainer.addEventListener('click', (e) => {
     const li = e.target.closest('.coin-select');
     const coinIdHigh = li.dataset.id;
-    carregarDashboard(coinIdHigh);
-    renderChart(coinIdHigh, appState.days, appState.currency);
+    carregarDashboard(appState.coin = coinIdHigh);
+    renderChart(appState.coin = coinIdHigh, appState.days, appState.currency);
   });
 
   losersContainer.innerHTML = losers.map(coin => `
@@ -210,8 +210,8 @@ async function renderTopMovers() {
   losersContainer.addEventListener('click', (e) => {
     const li = e.target.closest('.coin-select');
     const coinIdLow = li.dataset.id;
-    carregarDashboard(coinIdLow);
-    renderChart(coinIdLow, appState.days, appState.currency);
+    carregarDashboard(appState.coin = coinIdLow);
+    renderChart(appState.coin = coinIdLow, appState.days, appState.currency);
   });
 }
 
@@ -345,8 +345,7 @@ async function loadFilterData() {
     'all-time': 'max'
   }
   appState.days = periodMap[selDate.value] || 30;
-  renderChart(appState.coin, appState.days, appState.currency);
-
+  renderChart(appState.coin, appState.days);
 }
 
 document.getElementById('filter-date').addEventListener('change', () => {
@@ -586,7 +585,7 @@ async function renderDetailsCompare(coinId, prefix, days = 30, currency = 'usd')
 
 document.addEventListener('DOMContentLoaded', () => {
   carregarDashboard();
-  renderChart(appState.coin, appState.days, appState.currency);
+  renderChart();
   renderCardHighlights();
   renderTopMovers();
   renderMarketOverview();
