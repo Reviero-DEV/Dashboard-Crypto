@@ -66,7 +66,11 @@ async function carregarDashboard(coinId = appState.coin, currency = appState.cur
     percentChangeEl.className = coin.price_change_percentage_7d_in_currency >= 0 ? 'change-positive' : 'change-negative';
     percentChange24hEl.textContent = `${coin.price_change_percentage_24h.toFixed(2)}%`;
     percentChange24hEl.className = coin.price_change_percentage_24h >= 0 ? 'change-positive' : 'change-negative';
-    highLowEl.textContent = `${coin.high_24h.toLocaleString('pt-BR', { minimumFractionDigits: 2 })} / $${coin.low_24h.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+
+    highLowEl.textContent = `${formatNumberCompact(coin.high_24h).toLocaleString('pt-BR', {
+      style: 'currency', currency: currency.toUpperCase()
+    })} / ${formatNumberCompact(coin.low_24h).toLocaleString('pt-BR', { style: 'currency', currency: currency.toUpperCase() })}`;
+
     volumeEl.textContent = formatNumberCompact(coin.total_volume);
 
   } catch (error) {
@@ -362,6 +366,7 @@ async function loadFilterCurrency() {
     'BRL': 'brl'
   }
   appState.currency = currencyMap[selCurrency.value] || 'usd';
+  carregarDashboard(appState.coin, appState.currency);
   renderChart(appState.coin, appState.days, appState.currency);
 }
 
