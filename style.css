@@ -130,7 +130,6 @@ select {
     transition: width 0.3s ease;
     position: relative;
     z-index: 3;
-    /* height: 100%; */
 }
 
 .sidebar.collapsed {
@@ -197,7 +196,6 @@ section,
 .mda-details {
     border: 1px solid #ffffff1a;
     border-top: none;
-    /* flex: 1; */
 }
 
 .card-header {
@@ -211,6 +209,10 @@ section,
     align-items: center;
 }
 
+.price-area span {
+    font-size: 1.5rem;
+}
+
 .select-mda {
     height: fit-content;
     font-size: xx-small;
@@ -219,6 +221,11 @@ section,
 .chart-placeholderw.card {
     margin: 8px 0 11px 0;
     height: 240px;
+    padding: 10px;
+}
+
+#coinChart {
+    height: 100%;
 }
 
 .card {
@@ -231,7 +238,6 @@ section,
 
 #coin-name,
 #overview-title {
-    /* display: flex; */
     font-size: 1.7rem;
     align-items: center;
     margin-bottom: 10px;
@@ -386,7 +392,6 @@ img {
 .change-positive {
     color: var(--positive);
     background: rgba(0, 200, 83, 0);
-    /* padding: 4px 8px; */
     border-radius: 8px;
     height: fit-content;
     font-size: 0.8rem;
@@ -395,7 +400,6 @@ img {
 
 .change-negative {
     color: var(--negative);
-    /* padding: 4px 8px; */
     border-radius: 6px;
     font-size: 0.8rem;
     font-weight: bold;
@@ -417,7 +421,6 @@ img {
 .price-details {
     display: flex;
     justify-content: space-evenly;
-    /* padding-top: 15px; */
     gap: 20px;
     border-bottom: 1px solid #2d2f36;
 }
@@ -444,7 +447,6 @@ img {
 .market-iframe {
     width: 100%;
     height: 255px;
-    /* margin-top: 45px; */
     border: none;
     border-radius: 20px;
     overflow: hidden;

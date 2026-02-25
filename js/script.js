@@ -134,13 +134,10 @@ async function renderChart(coinId = appState.coin, days = appState.days, currenc
           }
         }
       }
-
-
     });
   } catch (error) {
     console.error('Erro ao renderizar gráfico', error.message);
   }
-  // console.log(window.Chart)
 }
 
 async function renderCardHighlights() {
@@ -172,9 +169,9 @@ async function renderCardHighlights() {
 }
 
 async function renderTopMovers() {
-  const data =  await topGainers();
+  const data = await topGainers();
   const gainers = [...data].filter(coins => coins.price_change_percentage_24h > 0).sort((a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h).slice(0, 7);
-  
+
   const losers = [...data].filter(coins => coins.price_change_percentage_24h < 0).sort((a, b) => a.price_change_percentage_24h - b.price_change_percentage_24h).slice(0, 7);
 
   const gainersContainer = document.getElementById('top-gainers');
@@ -336,14 +333,12 @@ async function searchCoins(query) {
 
 initSearch();
 
-let currentCoin = 'bitcoin';
-
 async function loadFilterData() {
   const selDate = document.getElementById('filter-date');
   if (!selDate) return;
   const periodMap = {
     'ult-7d': 7,
-    'ult-3od': 30,
+    'ult-30d': 30,
     'ult-3m': 90,
     'ult-1y': 365,
     'all-time': 'max'
@@ -413,7 +408,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 document.getElementById('btnCompare').addEventListener('click', () => {
-renderChartCompare(coinA, coinB, appState.days, appState.currency);
+  renderChartCompare(coinA, coinB, appState.days, appState.currency);
 })
 
 function searchCompare(inputId, resultsId, loadCoinData) {
@@ -457,16 +452,16 @@ function searchCompare(inputId, resultsId, loadCoinData) {
 }
 
 document.getElementById('compareBtn').addEventListener('click', (e) => {
-e.disabled = !coinA || !coinB || coinA === coinB;
-  if(!coinA || !coinB) {
+  e.disabled = !coinA || !coinB || coinA === coinB;
+  if (!coinA || !coinB) {
     alert('Selecione duas moedas');
     return;
   }
-  if(coinA === coinB) {
+  if (coinA === coinB) {
     alert('Escolha moedas diferentes');
     return;
   }
-renderChartCompare(coinA, coinB, appState.days, appState.currency);
+  renderChartCompare(coinA, coinB, appState.days, appState.currency);
 })
 
 let compareChart = null;
