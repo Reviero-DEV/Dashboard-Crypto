@@ -1,56 +1,65 @@
-# Dashboard Analicts Crypto. STATUS: Em Desenvolvimento
+# 📊Dashboard Analicts Crypto
 
-Um dashboard moderno e responsivo para análise de criptomoedas em tempo real. 
-Permite aos usuários acompanhar preços, comparar ativos, configurar alertas 
-personalizados e analisar tendências com gráficos interativos.
-
-## 📊 Como ficara apos ser concluido?
-Um Dashboard de Análise de Criptomoedas que permite aos usuários monitorar em tempo real o desempenho de diferentes criptomoedas, comparar ativos e gerenciar alertas de preço.
-
-## O que ja esta pronto?
-
-
-## Roadmap
-**Estruras e Adicao de conteudo**
-[X] Estruturar html
-[x] Estilizar css
-[x] Conectar Api
-[x] Adicionar conteudo a LiveMarket
-[x] Adicionar demais conteudos
-[x] Implantar Chart
-**Ajustes**
-[x] Seletor de filtro por data
-[x] Alteraçao de moeda
-[] Ajustar alarme
-[] Ajustar responsividade
+Dashboard moderno para análise de criptomoedas com atualização dinâmica de dados, comparação sob demanda e controle otimizado de requisições à API.
+Projeto desenvolvido com foco em arquitetura frontend, gerenciamento de estado e eficiência no consumo de APIs externas.
 
 ## 🎯 Funcionalidades Principais:
-Overview - Visão geral do mercado crypto com principais indicadores
-Assets - Lista e detalhes das criptomoedas monitoradas
-Compare - Comparação entre duas ou mais criptomoedas
-Alerts - Sistema de notificações para variações de preço
-Settings - Configurações do usuário e preferências
+📈 Gráfico principal com filtro por período (7d, 30d, etc.)
+💱 Atualização automática do dashboard ao alterar moeda (USD e outras)
+🔍 Busca de criptomoedas utilizando cache local
+🔥 Cards de maiores altas e quedas com reutilização de fetch
+⚖️ Comparação entre moedas executada sob demanda via botão
+📰 Feed de notícias com múltiplas fontes e fallback resiliente
+📊 Gráfico geral de mercado via TradingView
+💰 Formatação inteligente de valores financeiros
 
+## 🧠 Arquitetura & Decisões Técnicas
+🔹 Estado Centralizado (appState)
+Implementação de uma fonte única de verdade para controlar:
+Moeda selecionada
+Período do gráfico
+Moeda de cotação
+Moedas selecionadas para comparação
+Evita inconsistências entre dashboard e gráfico e elimina dependências implícitas.
 
-## Stack utilizada
+🔹 Otimização de Requisições
+Reutilização de fetch para renderizar gainers e losers
+Comparação executada apenas via botão
+Busca de moedas utilizando cache em memória
+Conversão do cache de array para objeto (lookup O(1))
+Redução de chamadas redundantes à API
+
+🔹 Sistema de Notícias com Resiliência
+Consumo de RSS convertido para JSON
+Duas fontes (Portal do Bitcoin e Livecoins)
+Complemento automático caso uma fonte retorne poucos resultados
+Mock local acionado em caso de falha
+Garante continuidade da experiência mesmo com indisponibilidade externa.
+
+🔹 Separação de Responsabilidades
+Seleção de moeda ≠ execução de comparação
+Renderização desacoplada da captura de input
+Organização por domínio: dashboard, compare, chart e news
+
+## 🛠️ Stack utilizada
 **Front-end:** HTML, CSS, Vanilla JS
-
-## Bibliotecas & APIs:
 **Fetch API**
 **Chart.js** 
-
-## API de Dados:
 **CoinGecko API**
-
-## Ferramentas de Desenvolvimento:
-**VS Code**
-**Git & GitHub**
-**Live Server** 
+**TradingView Widget (mercado geral)**
+**Conversor RSS → JSON**
 
 ## Build
 **GitPages**
 
-CRIADO POR: NETO REVIERO
-SINTA-SE A VONTADE PARA ENTRAR EM CONTATO!
+## 📌 Melhorias Futuras
+Persistência de cache via localStorage
+Backend proxy para controle de rate limit
+Debounce na busca
+Tema claro/escuro
+Sistema real de alertas com armazenamento persistente
 
-LinkedIn:
+👨‍💻CRIADO POR: NETO REVIERO
+Projeto desenvolvido com foco em evolução arquitetural, controle de estado e otimização de fluxo de dados no frontend.
+
+Conecte-se comigo no LinkedIn: <https://www.linkedin.com/in/neto-reviero/>
