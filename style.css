@@ -128,8 +128,8 @@ select {
     padding: 10px;
     border-right: 1px solid #2d2f36;
     transition: width 0.3s ease;
-    position: relative;
-    z-index: 3;
+    position: absolute;
+    height: 100%;
 }
 
 .sidebar.collapsed {
@@ -176,7 +176,7 @@ li.search-result-item:hover,
 }
 
 section#home-view {
-    grid-template-columns: 450px auto auto;
+    grid-template-columns: 450px auto 350px;
     height: 100%;
 }
 
@@ -196,6 +196,7 @@ section,
 .mda-details {
     border: 1px solid #ffffff1a;
     border-top: none;
+    border-bottom: none;
 }
 
 .card-header {
@@ -281,6 +282,7 @@ h3 {
 section#news-view {
     padding: 33px;
     gap: 40px;
+    max-width: 808.11px;
 }
 
 #news-view h3 {
