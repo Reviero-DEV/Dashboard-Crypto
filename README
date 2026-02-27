@@ -53,11 +53,13 @@ Organização por domínio: dashboard, compare, chart e news
 **GitPages**
 
 ## 📌 Melhorias Futuras
-Persistência de cache via localStorage
-Backend proxy para controle de rate limit
-Debounce na busca
-Tema claro/escuro
-Sistema real de alertas com armazenamento persistente
+**Otimização e estabilidade do LCP, reduzindo a dependência de chamadas externas na primeira dobra.**
+**Reorganização do carregamento de conteúdo secundário(notícias) para melhorar a previsibilidade de performance em redes lentas.**
+**Persistência de cache via localStorage**
+**Backend proxy para controle de rate limit**
+**Debounce na busca**
+**Tema claro/escuro**
+**Sistema real de alertas com armazenamento persistente**
 
 👨‍💻CRIADO POR: NETO REVIERO
 Projeto desenvolvido com foco em evolução arquitetural, controle de estado e otimização de fluxo de dados no frontend.
