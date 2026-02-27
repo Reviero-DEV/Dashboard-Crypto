@@ -268,9 +268,6 @@ async function renderNews() {
   const newsLatest = document.getElementById('news-week');
 
   if (!highlightsNews || !newsToday || !newsLatest) return;
-  highlightsNews.textContent = 'Carregando notícias...';
-  newsToday.textContent = 'Carregando notícias...';
-  newsLatest.textContent = 'Carregando notícias...';
 
   const news = await marketNews();
 
@@ -280,8 +277,6 @@ async function renderNews() {
   highlightsNews.innerHTML = news.slice(0, 10).map(createNewsItem).join('');
   newsToday.innerHTML = noticiasHoje.slice(0, 10).map(createNewsItem).join('');
   newsLatest.innerHTML = noticiasSemana.slice(0, 10).map(createNewsItem).join('');
-  console.log(`temos ${noticiasHoje.length} noticias de hoje`);
-  console.log(`temos ${noticiasSemana.length} noticias da semana`);
 }
 
 function initSearch() {
@@ -315,9 +310,9 @@ function initSearch() {
     const item = e.target.closest('.search-result-item');
     if (!item) return;
     const coinId = item.dataset.id;
-    carregarDashboard(coinId);
-    renderChart(coinId, appState.days, appState.currency);
-    searchResults.innerHTML = '';
+    carregarDashboard(appState.coin = coinId);
+    renderChart(appState.coin = coinId, appState.days, appState.currency);
+    searchResults.style.display = 'none';
     searchInput.value = '';
   });
 }
@@ -590,7 +585,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderTopMovers();
   renderMarketOverview();
   renderNews();
-  
+
   renderDetailsCompare(coinA, 'coinA', appState.days, appState.currency);
   renderDetailsCompare(coinB, 'coinB', appState.days, appState.currency);
   searchCompare('coinAInput', 'searchResults-coinA', (coinId) => {
